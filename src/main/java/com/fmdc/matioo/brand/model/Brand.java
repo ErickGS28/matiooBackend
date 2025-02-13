@@ -25,7 +25,13 @@ public class Brand {
 
     public Brand() {}
 
-    public Brand(String name) {
+    public Brand(Long id, String name, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.status = true;
+    }
+
+    public Brand(String name, boolean status) {
         this.name = name;
         this.status = true;
     }

@@ -18,7 +18,13 @@ public class CommonArea {
 
     public CommonArea() {}
 
-    public CommonArea(String name) {
+    public CommonArea(Long id, String name, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.status = true;
+    }
+
+    public CommonArea(String name, boolean status) {
         this.name = name;
         this.status = true;
     }

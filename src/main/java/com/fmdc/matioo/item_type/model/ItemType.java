@@ -26,6 +26,12 @@ public class ItemType {
 
     public ItemType() {}
 
+    public ItemType(Long id, String name, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.status = true;
+    }
+
     public ItemType(String name) {
         this.name = name;
         this.status = true;

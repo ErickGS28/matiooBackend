@@ -49,14 +49,13 @@ public class AppUser {
 
     public AppUser() {}
 
-    public AppUser(String fullName, String username, String password, String location, Role role, String email) {
+    public AppUser(String fullName, String username, String password, String email, String location, Role role) {
         this.fullName = fullName;
         this.username = username;
         this.password = password;
+        this.email = email;
         this.location = location;
         this.role = role;
-        this.email = email;
-        this.status = true;
     }
 
     public List<Item> getAssignedItems() {

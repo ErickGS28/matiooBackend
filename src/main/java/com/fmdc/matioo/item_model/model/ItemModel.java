@@ -28,7 +28,14 @@ public class ItemModel {
 
     public ItemModel() {}
 
-    public ItemModel(String name, String photo) {
+    public ItemModel(Long id, String name, String photo, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.photo = photo;
+        this.status = true;
+    }
+
+    public ItemModel(String name, String photo, boolean status) {
         this.name = name;
         this.photo = photo;
         this.status = true;
