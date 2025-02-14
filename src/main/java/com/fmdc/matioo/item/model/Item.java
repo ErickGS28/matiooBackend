@@ -1,4 +1,5 @@
 package com.fmdc.matioo.item.model;
+
 import com.fmdc.matioo.item_type.model.ItemType;
 import com.fmdc.matioo.item_model.model.ItemModel;
 import com.fmdc.matioo.brand.model.Brand;
@@ -29,8 +30,13 @@ public class Item {
     @Column(name = "code", length = 50, nullable = false, unique = true)
     private String code;
 
-    @ManyToOne()
-    private AppUser responsible;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private AppUser owner;
+
+    @ManyToOne
+    @JoinColumn(name = "assigned_to_id")
+    private AppUser assignedTo;
 
     @Column(name = "location", length = 150)
     private String location;
@@ -41,29 +47,35 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long id, ItemType itemType, Brand brand, ItemModel model, String serialNumber, String code, AppUser responsible, String location, boolean status) {
+    public Item(Long id, ItemType itemType, Brand brand, ItemModel model,
+                String serialNumber, String code, AppUser owner,
+                AppUser assignedTo, String location, boolean status) {
         this.id = id;
         this.itemType = itemType;
         this.brand = brand;
         this.model = model;
         this.serialNumber = serialNumber;
         this.code = code;
-        this.responsible = responsible;
+        this.owner = owner;
+        this.assignedTo = assignedTo;
         this.location = location;
         this.status = status;
     }
-
-    public Item(ItemType itemType, Brand brand, ItemModel model, String serialNumber, String code, AppUser responsible, String location, boolean status) {
+    public Item(ItemType itemType, Brand brand, ItemModel model,
+                String serialNumber, String code, AppUser owner,
+                AppUser assignedTo, String location, boolean status) {
         this.itemType = itemType;
         this.brand = brand;
         this.model = model;
         this.serialNumber = serialNumber;
         this.code = code;
-        this.responsible = responsible;
+        this.owner = owner;
+        this.assignedTo = assignedTo;
         this.location = location;
         this.status = status;
     }
 
+    // GETTERS & SETTERS
     public Long getId() {
         return id;
     }
@@ -112,12 +124,20 @@ public class Item {
         this.code = code;
     }
 
-    public AppUser getResponsible() {
-        return responsible;
+    public AppUser getOwner() {
+        return owner;
     }
 
-    public void setResponsible(AppUser responsible) {
-        this.responsible = responsible;
+    public void setOwner(AppUser owner) {
+        this.owner = owner;
+    }
+
+    public AppUser getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(AppUser assignedTo) {
+        this.assignedTo = assignedTo;
     }
 
     public String getLocation() {

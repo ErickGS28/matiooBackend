@@ -1,9 +1,10 @@
 package com.fmdc.matioo.user.model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fmdc.matioo.item.model.Item;
 import com.fmdc.matioo.resources.Role;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,9 +44,13 @@ public class AppUser {
     @Column(name = "status", columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean status = true;
 
-    @OneToMany(mappedBy = "responsible")
+    @OneToMany(mappedBy = "assignedTo")
     @JsonIgnore
     private List<Item> assignedItems;
+
+    @OneToMany(mappedBy = "owner")
+    @JsonIgnore
+    private List<Item> ownedItems;
 
     public AppUser() {}
 
@@ -58,13 +63,7 @@ public class AppUser {
         this.role = role;
     }
 
-    public List<Item> getAssignedItems() {
-        return assignedItems;
-    }
-
-    public void setAssignedItems(List<Item> assignedItems) {
-        this.assignedItems = assignedItems;
-    }
+    // Getters y Setters
 
     public Long getId() {
         return id;
@@ -144,5 +143,21 @@ public class AppUser {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Item> getAssignedItems() {
+        return assignedItems;
+    }
+
+    public void setAssignedItems(List<Item> assignedItems) {
+        this.assignedItems = assignedItems;
+    }
+
+    public List<Item> getOwnedItems() {
+        return ownedItems;
+    }
+
+    public void setOwnedItems(List<Item> ownedItems) {
+        this.ownedItems = ownedItems;
     }
 }
