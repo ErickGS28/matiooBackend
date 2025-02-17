@@ -1,6 +1,7 @@
-package com.fmdc.matioo.user.control;
+package com.fmdc.matioo.user.service;
 
 import com.fmdc.matioo.user.model.*;
+import com.fmdc.matioo.user.repository.AppUserRepository;
 import com.fmdc.matioo.utils.EmailSender;
 import com.fmdc.matioo.utils.Message;
 import com.fmdc.matioo.utils.TypesResponse;

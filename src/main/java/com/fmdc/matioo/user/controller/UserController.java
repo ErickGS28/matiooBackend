@@ -1,6 +1,6 @@
-package com.fmdc.matioo.user.control;
+package com.fmdc.matioo.user.controller;
 
-import com.fmdc.matioo.user.control.UserService;
+import com.fmdc.matioo.user.service.UserService;
 import com.fmdc.matioo.user.model.ChangePasswordDTO;
 import com.fmdc.matioo.user.model.ProfileDTO;
 import com.fmdc.matioo.user.model.RecoveryDTO;

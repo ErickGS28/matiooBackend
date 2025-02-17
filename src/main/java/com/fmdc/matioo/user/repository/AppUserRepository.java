@@ -1,4 +1,4 @@
-package com.fmdc.matioo.user.model;
+package com.fmdc.matioo.user.repository;
 
 import com.fmdc.matioo.user.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
