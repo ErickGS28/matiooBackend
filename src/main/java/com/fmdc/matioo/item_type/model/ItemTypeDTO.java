@@ -1,11 +1,8 @@
 package com.fmdc.matioo.item_type.model;
 
-import com.fmdc.matioo.item_model.model.ItemModelDTO.Create;
-
 import jakarta.validation.constraints.*;
 
 public class ItemTypeDTO {
-
      @NotNull(groups = {Update.class, ChangeStatus.class}, message = "ID no puede ser nulo.")
     private Long id;
 

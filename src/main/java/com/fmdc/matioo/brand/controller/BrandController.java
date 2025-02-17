@@ -15,13 +15,13 @@ import java.util.List;
 @Validated
 public class BrandController {
     @Autowired
-    private BrandService brandModelService;
+    private BrandService brandService;
 
     // Crear nueva marca
     @PostMapping
     public ResponseEntity<Brand> create(@Validated(BrandDTO.Create.class) @RequestBody BrandDTO dto) {
-        Brand createModel = brandModelService.createBrandModel(dto);
-        return ResponseEntity.ok(createModel);
+        Brand create_brand = brandService.createBrand(dto);
+        return ResponseEntity.ok(create_brand);
     }
 
 
@@ -31,10 +31,9 @@ public class BrandController {
     @PutMapping("/{id}")
     public ResponseEntity<Brand> update(
             @PathVariable Long id,
-            @Validated(BrandDTO.Update.class) @RequestBody BrandDTO dto
-    ) {
-        Brand updateModel = brandModelService.updateBrandModel(id, dto);
-        return ResponseEntity.ok(updateModel);
+            @Validated(BrandDTO.Update.class) @RequestBody BrandDTO dto) {
+        Brand updateBrand = brandService.updateBrand(id, dto);
+        return ResponseEntity.ok(updateBrand);
     }
 
 
@@ -44,18 +43,17 @@ public class BrandController {
     @PatchMapping("/{id}/status")
     public ResponseEntity<Brand> changeStatus(
             @PathVariable Long id,
-            @Validated(BrandDTO.ChangeStatus.class) @RequestBody BrandDTO dto
-    ) {
-        Brand updateModel = brandModelService.updateBrandModel(id, dto);
-        return ResponseEntity.ok(updateModel);
+            @Validated(BrandDTO.ChangeStatus.class) @RequestBody BrandDTO dto) {
+        Brand updateBrand = brandService.updateBrand(id, dto);
+        return ResponseEntity.ok(updateBrand);
     }
 
 
 
-    // Obtener todas las marcas ativas
+    // Obtener todas las marcas activas
     @GetMapping("/active")
     public ResponseEntity<List<Brand>> getActiveBrands() {
-        return ResponseEntity.ok(brandModelService.getActiveBrands());
+        return ResponseEntity.ok(brandService.getActiveBrands());
     }
 
 
@@ -64,7 +62,7 @@ public class BrandController {
     // Obtener todas las marcas inactivas
     @GetMapping("/inactive")
     public ResponseEntity<List<Brand>> getInactiveBrands() {
-        return ResponseEntity.ok(brandModelService.getInactiveBrands());
+        return ResponseEntity.ok(brandService.getInactiveBrands());
     }
 
 
@@ -73,7 +71,7 @@ public class BrandController {
     // Eliminar marca
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        brandModelService.deleteBrandModel(id);
+        brandService.deleteBrand(id);
         return ResponseEntity.noContent().build();
     }
 }
