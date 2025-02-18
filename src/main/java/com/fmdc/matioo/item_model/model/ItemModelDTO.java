@@ -14,7 +14,7 @@ public class ItemModelDTO {
     @Size(max = 255, groups = {Create.class, Update.class}, message = "La URL de la foto no puede tener más de 255 caracteres.")
     private String photo;
 
-    //@NotNull(groups = {Create.class, Update.class, ChangeStatus.class}, message = "El estado no puede ser nulo.")
+    @NotNull(groups = {ChangeStatus.class}, message = "El estado no puede ser nulo.")
     private Boolean status;
 
     // Constructor vacío
