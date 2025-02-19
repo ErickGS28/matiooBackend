@@ -72,6 +72,49 @@ public class UserService {
         return new ResponseEntity<>(new Message(user, "Usuario creado con éxito.", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public ResponseEntity<Message> update(UserDTO dto) {
+        Optional<AppUser> optionalUser = userRepository.findById(dto.getId());
+        if (!optionalUser.isPresent()) {
+            return new ResponseEntity<>(new Message("Usuario no encontrado.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+
+        AppUser user = optionalUser.get();
+
+        // Verificar si el email ya existe en otro usuario
+        if (!user.getEmail().equals(dto.getEmail()) && userRepository.existsByEmail(dto.getEmail())) {
+            return new ResponseEntity<>(new Message("El correo ya está en uso.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
+        // Verificar si el username ya existe en otro usuario
+        if (!user.getUsername().equals(dto.getUsername()) && userRepository.existsByUsername(dto.getUsername())) {
+            return new ResponseEntity<>(new Message("El nombre de usuario ya está en uso.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
+        // Validar longitudes
+        if (dto.getFullName().length() > 100) {
+            return new ResponseEntity<>(new Message("El nombre completo no puede exceder los 100 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+        if (dto.getUsername().length() > 50) {
+            return new ResponseEntity<>(new Message("El nombre de usuario no puede exceder los 50 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+        if (dto.getEmail().length() > 100) {
+            return new ResponseEntity<>(new Message("El correo no puede exceder los 100 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
+        // Actualizar datos
+        user.setFullName(dto.getFullName());
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setLocation(dto.getLocation());
+        user.setRole(dto.getRole());
+        user.setStatus(dto.getStatus());
+
+        userRepository.save(user);
+        return new ResponseEntity<>(new Message(user, "Usuario actualizado con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+
     // Actualizar perfil de usuario
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> updateProfile(ProfileDTO dto) {
@@ -82,7 +125,16 @@ public class UserService {
 
         AppUser user = optionalUser.get();
 
-        // Validar longitud de los campos
+        // Validación mejorada: solo restringir si el email o username ya existen en otro usuario
+        if (!user.getEmail().equals(dto.getEmail()) && userRepository.existsByEmail(dto.getEmail())) {
+            return new ResponseEntity<>(new Message("El correo ya está en uso.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
+        if (!user.getUsername().equals(dto.getUsername()) && userRepository.existsByUsername(dto.getUsername())) {
+            return new ResponseEntity<>(new Message("El nombre de usuario ya está en uso.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
+        // Validar longitudes
         if (dto.getFullName().length() > 100) {
             return new ResponseEntity<>(new Message("El nombre completo no puede exceder los 100 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }

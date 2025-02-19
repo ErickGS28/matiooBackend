@@ -40,6 +40,11 @@ public class UserController {
         return userService.save(dto);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<Message> updateUser(@Validated(UserDTO.Modify.class) @RequestBody UserDTO dto) {
+        return userService.update(dto);
+    }
+
     @PutMapping("/update-profile")
     public ResponseEntity<Message> updateProfile(
             @Validated(ProfileDTO.UpdateProfile.class) @RequestBody ProfileDTO dto) {
