@@ -14,6 +14,12 @@ import java.util.Optional;
 public class BrandService {
     @Autowired
     private BrandRepository brandRepository;
+
+    // Obtener todas las marcas
+    public List<Brand> findAllBrands() {
+        return brandRepository.findAll();
+    }
+
     // Crear nueva marca
     public Brand createBrand (BrandDTO dto) {
         if (brandRepository.existsByName(dto.getName())) {
@@ -24,9 +30,6 @@ public class BrandService {
         brandModel.setStatus(dto.getStatus() != null ? dto.getStatus() : true); // Default status = true
         return brandRepository.save(brandModel);
     }
-
-
-
 
     // Actualizar marca
     public Brand updateBrand (Long id, BrandDTO dto) {

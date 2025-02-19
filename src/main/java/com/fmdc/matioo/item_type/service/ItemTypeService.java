@@ -14,6 +14,13 @@ public class ItemTypeService {
     @Autowired
     private ItemTypeRepository itemTypeRepository;
 
+
+    // Obtener todos los tipos de bien
+    public List<ItemType> findAllItemTypes() {
+        return itemTypeRepository.findAll();
+    }
+
+
     // Crear nuevo tipo de bien
     public ItemType createItemType (ItemTypeDTO dto) {
         if (itemTypeRepository.existsByName(dto.getName())) {

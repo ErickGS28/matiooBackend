@@ -21,6 +21,11 @@ public class ItemTypeController {
     @Autowired
     private ItemTypeService itemTypeService;
 
+    // Obtener todos los tipos de bien
+    @GetMapping("/all")
+    public ResponseEntity<List<ItemType>> getAllItemTypes() {
+        return ResponseEntity.ok(itemTypeService.findAllItemTypes());
+    }
     // Crear nuevo tipo de bien
     @PostMapping("/save")
     public ResponseEntity<ItemType> create(@Validated(ItemTypeDTO.Create.class) @RequestBody ItemTypeDTO dto) {

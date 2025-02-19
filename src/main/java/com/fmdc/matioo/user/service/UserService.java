@@ -12,8 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
@@ -33,30 +31,33 @@ public class UserService {
         this.emailSender = emailSender;
     }
 
-    // GET ALL USERS
+    // Obtener todos los usuarios
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findAll() {
-        return new ResponseEntity<>(new Message(userRepository.findAll(), "User list", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message(userRepository.findAll(), "Lista de usuarios obtenida con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // FIND USER BY ID
+    // Buscar usuario por ID
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findById(Long id) {
         return userRepository.findById(id)
-                .map(user -> new ResponseEntity<>(new Message(user, "User found", TypesResponse.SUCCESS), HttpStatus.OK))
-                .orElse(new ResponseEntity<>(new Message("User not found", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
+                .map(user -> new ResponseEntity<>(new Message(user, "Usuario encontrado.", TypesResponse.SUCCESS), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(new Message("Usuario no encontrado.", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
     }
 
-    // CREATE USER
+    // Crear usuario
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> save(UserDTO dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
-            return new ResponseEntity<>(new Message("Email is already in use", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("El correo ya está en uso.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
         if (userRepository.existsByUsername(dto.getUsername())) {
-            return new ResponseEntity<>(new Message("Username is already in use", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("El nombre de usuario ya está en uso.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-    
+        if (dto.getPassword().length() < 8 || dto.getPassword().length() > 255) {
+            return new ResponseEntity<>(new Message("La contraseña debe tener entre 8 y 255 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
         AppUser user = new AppUser(
                 dto.getFullName(),
                 dto.getUsername(),
@@ -66,51 +67,66 @@ public class UserService {
                 dto.getRole()
         );
         user.setStatus(true);
-    
-        userRepository.save(user);
-        return new ResponseEntity<>(new Message(user, "User created successfully", TypesResponse.SUCCESS), HttpStatus.CREATED);
-    }
-    
 
-    // UPDATE USER PROFILE
+        userRepository.save(user);
+        return new ResponseEntity<>(new Message(user, "Usuario creado con éxito.", TypesResponse.SUCCESS), HttpStatus.CREATED);
+    }
+
+    // Actualizar perfil de usuario
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> updateProfile(ProfileDTO dto) {
         Optional<AppUser> optionalUser = userRepository.findById(dto.getId());
         if (!optionalUser.isPresent()) {
-            return new ResponseEntity<>(new Message("User not found", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Message("Usuario no encontrado.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
         AppUser user = optionalUser.get();
+
+        // Validar longitud de los campos
+        if (dto.getFullName().length() > 100) {
+            return new ResponseEntity<>(new Message("El nombre completo no puede exceder los 100 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+        if (dto.getUsername().length() > 50) {
+            return new ResponseEntity<>(new Message("El nombre de usuario no puede exceder los 50 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+        if (dto.getEmail().length() > 100) {
+            return new ResponseEntity<>(new Message("El correo no puede exceder los 100 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
         user.setFullName(dto.getFullName());
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setLocation(dto.getLocation());
 
         userRepository.save(user);
-        return new ResponseEntity<>(new Message(user, "Profile updated successfully", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message(user, "Perfil actualizado con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // CHANGE PASSWORD
+    // Cambiar contraseña
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> changePassword(ChangePasswordDTO dto) {
         Optional<AppUser> optionalUser = userRepository.findById(dto.getUserId());
         if (!optionalUser.isPresent()) {
-            return new ResponseEntity<>(new Message("User not found", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Message("Usuario no encontrado.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+
+        if (dto.getNewPassword().length() < 8 || dto.getNewPassword().length() > 255) {
+            return new ResponseEntity<>(new Message("La contraseña debe tener entre 8 y 255 caracteres.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
         AppUser user = optionalUser.get();
         user.setPassword(passwordEncoder.encode(dto.getNewPassword()));
 
         userRepository.save(user);
-        return new ResponseEntity<>(new Message("Password updated successfully", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message("Contraseña actualizada con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // SEND RECOVERY CODE
+    // Enviar código de recuperación
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> sendRecoveryCode(String email) {
         Optional<AppUser> optionalUser = userRepository.findByEmail(email);
         if (!optionalUser.isPresent()) {
-            return new ResponseEntity<>(new Message("No user found with this email", TypesResponse.WARNING), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Message("No se encontró un usuario con este correo.", TypesResponse.WARNING), HttpStatus.NOT_FOUND);
         }
 
         AppUser user = optionalUser.get();
@@ -119,39 +135,38 @@ public class UserService {
         user.setCodeExpiration(LocalDateTime.now().plusMinutes(10));
 
         userRepository.save(user);
+        emailSender.sendSimpleMessage(user.getEmail(), "Recuperación de contraseña", "Su código de recuperación es: " + code);
 
-        emailSender.sendSimpleMessage(user.getEmail(), "Recuperacion de contraseña", "Su código de recuperación es: " + code);
-
-        return new ResponseEntity<>(new Message("Recovery code sent successfully", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message("Código de recuperación enviado con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // VERIFY RECOVERY CODE
+    // Verificar código de recuperación
     @Transactional(readOnly = true)
     public ResponseEntity<Message> verifyRecoveryCode(RecoveryDTO dto) {
         Optional<AppUser> optionalUser = userRepository.findFirstByRecoveryCode(dto.getRecoveryCode());
         if (!optionalUser.isPresent()) {
-            return new ResponseEntity<>(new Message("Invalid or expired recovery code", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("El código de recuperación es inválido o ha expirado.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
         AppUser user = optionalUser.get();
         if (user.getCodeExpiration().isBefore(LocalDateTime.now())) {
-            return new ResponseEntity<>(new Message("Recovery code has expired", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("El código de recuperación ha expirado.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(new Message("Recovery code verified successfully", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message("Código de recuperación verificado con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // RESET PASSWORD AFTER VERIFICATION
+    // Restablecer contraseña después de la verificación
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> resetPassword(String email, String newPassword) {
         Optional<AppUser> optionalUser = userRepository.findByEmail(email);
         if (!optionalUser.isPresent()) {
-            return new ResponseEntity<>(new Message("User not found", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Message("Usuario no encontrado.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
         AppUser user = optionalUser.get();
         if (user.getRecoveryCode() == null || user.getCodeExpiration().isBefore(LocalDateTime.now())) {
-            return new ResponseEntity<>(new Message("Recovery code is invalid or expired", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("El código de recuperación es inválido o ha expirado.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
         user.setPassword(passwordEncoder.encode(newPassword));
@@ -159,21 +174,23 @@ public class UserService {
         user.setCodeExpiration(null);
 
         userRepository.save(user);
-        return new ResponseEntity<>(new Message("Password reset successfully", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message("Contraseña restablecida con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
-
-    // CHANGE USER STATUS (ENABLE/DISABLE)
+    // Cambiar estado del usuario (Activar/Desactivar)
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> changeStatus(Long id) {
         Optional<AppUser> optionalUser = userRepository.findById(id);
         if (!optionalUser.isPresent()) {
-            return new ResponseEntity<>(new Message("User not found", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new Message("Usuario no encontrado.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
         AppUser user = optionalUser.get();
-        user.setStatus(!user.isStatus());
+        user.setStatus(!user.isStatus()); // Alternar estado (activo/inactivo)
 
         userRepository.save(user);
-        return new ResponseEntity<>(new Message(user, "User status updated", TypesResponse.SUCCESS), HttpStatus.OK);
+        String statusMessage = user.isStatus() ? "Usuario activado con éxito." : "Usuario desactivado con éxito.";
+
+        return new ResponseEntity<>(new Message(user, statusMessage, TypesResponse.SUCCESS), HttpStatus.OK);
     }
+
 }

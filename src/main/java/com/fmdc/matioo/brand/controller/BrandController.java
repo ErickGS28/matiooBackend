@@ -17,6 +17,12 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+    // Obtener todas las marcas
+    @GetMapping("/all")
+    public ResponseEntity<List<Brand>> getAllBrands() {
+        return ResponseEntity.ok(brandService.findAllBrands());
+    }
+
     // Crear nueva marca
     @PostMapping("/save")
     public ResponseEntity<Brand> create(@Validated(BrandDTO.Create.class) @RequestBody BrandDTO dto) {
