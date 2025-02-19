@@ -15,14 +15,14 @@ import com.fmdc.matioo.item_type.service.ItemTypeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/item-type-models")
+@RequestMapping("/item-type-models")
 @Validated
 public class ItemTypeController {
     @Autowired
     private ItemTypeService itemTypeService;
 
     // Crear nuevo tipo de bien
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<ItemType> create(@Validated(ItemTypeDTO.Create.class) @RequestBody ItemTypeDTO dto) {
         ItemType create_itemType = itemTypeService.createItemType(dto);
         return ResponseEntity.ok(create_itemType);
@@ -30,7 +30,7 @@ public class ItemTypeController {
 
 
     // Actualizar tipo de bien
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<ItemType> update(
             @PathVariable Long id,
             @Validated(ItemTypeDTO.Update.class) @RequestBody ItemTypeDTO dto) {
@@ -66,7 +66,7 @@ public class ItemTypeController {
 
 
     // Eliminar tipo de bien
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         itemTypeService.deleteItemType(id);
         return ResponseEntity.noContent().build();

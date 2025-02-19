@@ -87,6 +87,18 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency>
+
+
+	<!-- ENV VAR -->
+	<dependency>
+    <groupId>io.github.cdimascio</groupId>
+    <artifactId>java-dotenv</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+	
+
+
 <!--		Por si acaso esta, en caso de haber problemas con el security se va a ocupar-->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>

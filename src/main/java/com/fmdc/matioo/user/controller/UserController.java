@@ -41,7 +41,8 @@ public class UserController {
     }
 
     @PutMapping("/update-profile")
-    public ResponseEntity<Message> updateProfile(@Validated(ProfileDTO.UpdateProfile.class) @RequestBody ProfileDTO dto) {
+    public ResponseEntity<Message> updateProfile(
+            @Validated(ProfileDTO.UpdateProfile.class) @RequestBody ProfileDTO dto) {
         return userService.updateProfile(dto);
     }
 

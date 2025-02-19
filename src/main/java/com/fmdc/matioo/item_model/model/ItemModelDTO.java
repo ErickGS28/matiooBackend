@@ -1,10 +1,9 @@
 package com.fmdc.matioo.item_model.model;
 
 import jakarta.validation.constraints.*;
-
 public class ItemModelDTO {
 
-    @NotNull(groups = {Update.class, ChangeStatus.class}, message = "ID no puede ser nulo.")
+    // Elimina la anotación @NotNull para el id en la clase Update
     private Long id;
 
     @NotBlank(groups = {Create.class, Update.class}, message = "El nombre no puede estar vacío.")
@@ -20,22 +19,13 @@ public class ItemModelDTO {
     // Constructor vacío
     public ItemModelDTO() {}
 
-    public ItemModelDTO(Long id, String name, String photo, Boolean status) {
-        this.id = id;
+    public ItemModelDTO(String name, String photo, Boolean status) {
         this.name = name;
         this.photo = photo;
         this.status = status;
     }
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Getters y Setters (sin id)
     public String getName() {
         return name;
     }
@@ -59,7 +49,6 @@ public class ItemModelDTO {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
 
     // Validaciones
     public interface Create {}

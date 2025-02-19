@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/item-models")
+@RequestMapping("/item-models")
 @Validated
 public class ItemModelController {
 
@@ -20,20 +20,22 @@ public class ItemModelController {
     private ItemModelService itemModelService;
 
     // Crear un nuevo modelo
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<ItemModel> createModel(@Validated(ItemModelDTO.Create.class) @RequestBody ItemModelDTO dto) {
         ItemModel createdModel = itemModelService.createItemModel(dto);
         return ResponseEntity.ok(createdModel);
     }
 
     // Actualizar un modelo existente
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<ItemModel> updateModel(
             @PathVariable Long id,
             @Validated(ItemModelDTO.Update.class) @RequestBody ItemModelDTO dto) {
+        System.out.println("ID recibido: " + id);
         ItemModel updatedModel = itemModelService.updateItemModel(id, dto);
         return ResponseEntity.ok(updatedModel);
     }
+    
 
     // Cambiar el estado de un modelo
     @PatchMapping("/{id}/status")
@@ -57,7 +59,7 @@ public class ItemModelController {
     }
 
     // Eliminar un modelo
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deleteModel(@PathVariable Long id) {
         itemModelService.deleteItemModel(id);
         return ResponseEntity.noContent().build();

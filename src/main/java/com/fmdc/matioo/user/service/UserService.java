@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
@@ -54,7 +56,7 @@ public class UserService {
         if (userRepository.existsByUsername(dto.getUsername())) {
             return new ResponseEntity<>(new Message("Username is already in use", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-
+    
         AppUser user = new AppUser(
                 dto.getFullName(),
                 dto.getUsername(),
@@ -64,10 +66,11 @@ public class UserService {
                 dto.getRole()
         );
         user.setStatus(true);
-
+    
         userRepository.save(user);
         return new ResponseEntity<>(new Message(user, "User created successfully", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
+    
 
     // UPDATE USER PROFILE
     @Transactional(rollbackFor = Exception.class)
@@ -117,7 +120,7 @@ public class UserService {
 
         userRepository.save(user);
 
-        emailSender.sendSimpleMessage(user.getEmail(), "Password Recovery", "Your recovery code is: " + code);
+        emailSender.sendSimpleMessage(user.getEmail(), "Recuperacion de contraseña", "Su código de recuperación es: " + code);
 
         return new ResponseEntity<>(new Message("Recovery code sent successfully", TypesResponse.SUCCESS), HttpStatus.OK);
     }
