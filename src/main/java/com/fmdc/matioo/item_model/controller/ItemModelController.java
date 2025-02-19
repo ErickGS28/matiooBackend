@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/models")
+@RequestMapping("/api/item-models")
 @Validated
 public class ItemModelController {
 

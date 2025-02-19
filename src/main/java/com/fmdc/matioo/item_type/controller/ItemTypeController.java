@@ -15,7 +15,7 @@ import com.fmdc.matioo.item_type.service.ItemTypeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/models")
+@RequestMapping("/api/item-type-models")
 @Validated
 public class ItemTypeController {
     @Autowired
