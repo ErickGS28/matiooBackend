@@ -25,7 +25,14 @@ public class ItemModelDTO {
         this.status = status;
     }
 
-    // Getters y Setters (sin id)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -49,6 +56,7 @@ public class ItemModelDTO {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
 
     // Validaciones
     public interface Create {}
