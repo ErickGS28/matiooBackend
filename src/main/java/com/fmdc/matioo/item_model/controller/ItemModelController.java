@@ -1,15 +1,11 @@
 package com.fmdc.matioo.item_model.controller;
 
 import com.fmdc.matioo.item_model.model.ItemModelDTO;
-import com.fmdc.matioo.item_model.model.ItemModel;
 import com.fmdc.matioo.item_model.service.ItemModelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-
 
 @RestController
 @RequestMapping("/item-models")
@@ -19,49 +15,49 @@ public class ItemModelController {
     @Autowired
     private ItemModelService itemModelService;
 
+    // Obtener todos los modelos
+@GetMapping("/all")
+public ResponseEntity<?> getAllModels() {
+    return itemModelService.getAllModels();
+}
+
     // Crear un nuevo modelo
     @PostMapping("/save")
-    public ResponseEntity<ItemModel> createModel(@Validated(ItemModelDTO.Create.class) @RequestBody ItemModelDTO dto) {
-        ItemModel createdModel = itemModelService.createItemModel(dto);
-        return ResponseEntity.ok(createdModel);
+    public ResponseEntity<?> createModel(@Validated(ItemModelDTO.Create.class) @RequestBody ItemModelDTO dto) {
+        return itemModelService.createItemModel(dto);
     }
 
     // Actualizar un modelo existente
-    @PutMapping("update/{id}")
-    public ResponseEntity<ItemModel> updateModel(
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateModel(
             @PathVariable Long id,
             @Validated(ItemModelDTO.Update.class) @RequestBody ItemModelDTO dto) {
-        System.out.println("ID recibido: " + id);
-        ItemModel updatedModel = itemModelService.updateItemModel(id, dto);
-        return ResponseEntity.ok(updatedModel);
+        return itemModelService.updateItemModel(id, dto);
     }
-    
 
     // Cambiar el estado de un modelo
     @PatchMapping("/{id}/status")
-    public ResponseEntity<ItemModel> changeStatus(
+    public ResponseEntity<?> changeStatus(
             @PathVariable Long id,
             @Validated(ItemModelDTO.ChangeStatus.class) @RequestBody ItemModelDTO dto) {
-        ItemModel updatedModel = itemModelService.changeStatus(id, dto.getStatus());
-        return ResponseEntity.ok(updatedModel);
+        return itemModelService.changeStatus(id, dto.getStatus());
     }
 
     // Obtener todos los modelos activos
     @GetMapping("/active")
-    public ResponseEntity<List<ItemModel>> getActiveModels() {
-        return ResponseEntity.ok(itemModelService.getActiveModels());
+    public ResponseEntity<?> getActiveModels() {
+        return itemModelService.getActiveModels();
     }
 
     // Obtener todos los modelos inactivos
     @GetMapping("/inactive")
-    public ResponseEntity<List<ItemModel>> getInactiveModels() {
-        return ResponseEntity.ok(itemModelService.getInactiveModels());
+    public ResponseEntity<?> getInactiveModels() {
+        return itemModelService.getInactiveModels();
     }
 
     // Eliminar un modelo
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteModel(@PathVariable Long id) {
-        itemModelService.deleteItemModel(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteModel(@PathVariable Long id) {
+        return itemModelService.deleteItemModel(id);
     }
 }
