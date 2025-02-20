@@ -1,83 +1,61 @@
 package com.fmdc.matioo.brand.controller;
 
-import com.fmdc.matioo.brand.model.Brand;
 import com.fmdc.matioo.brand.model.BrandDTO;
 import com.fmdc.matioo.brand.service.BrandService;
+import com.fmdc.matioo.utils.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/brands")
 @Validated
 public class BrandController {
     @Autowired
-    private BrandService brandService;
+    private final BrandService brandService;
+
+    public BrandController(BrandService brandService) {
+        this.brandService = brandService;
+    }
 
     // Obtener todas las marcas
     @GetMapping("/all")
-    public ResponseEntity<List<Brand>> getAllBrands() {
-        return ResponseEntity.ok(brandService.findAllBrands());
+    public ResponseEntity<Message> getAllBrands() {
+        return brandService.findAllBrands();
     }
 
     // Crear nueva marca
     @PostMapping("/save")
-    public ResponseEntity<Brand> create(@Validated(BrandDTO.Create.class) @RequestBody BrandDTO dto) {
-        Brand create_brand = brandService.createBrand(dto);
-        return ResponseEntity.ok(create_brand);
+    public ResponseEntity<Message> create(@Validated(BrandDTO.Create.class) @RequestBody BrandDTO dto) {
+        return brandService.createBrand(dto);
     }
-
-
 
 
     // Actualizar marca
     @PutMapping("update/{id}")
-    public ResponseEntity<Brand> update(
+    public ResponseEntity<Message> update(
             @PathVariable Long id,
             @Validated(BrandDTO.Update.class) @RequestBody BrandDTO dto) {
-        Brand updateBrand = brandService.updateBrand(id, dto);
-        return ResponseEntity.ok(updateBrand);
+        return brandService.updateBrand(id, dto);
     }
-
-
-
 
     // Cambiar estado de una marca
-    @PatchMapping("/{id}/status")
-    public ResponseEntity<Brand> changeStatus(
-            @PathVariable Long id,
-            @Validated(BrandDTO.ChangeStatus.class) @RequestBody BrandDTO dto) {
-        Brand updateBrand = brandService.updateBrand(id, dto);
-        return ResponseEntity.ok(updateBrand);
+    @PutMapping("/status/{id}")
+    public ResponseEntity<Message> changeStatus(@PathVariable Long id, Boolean status) {
+        return brandService.changeStatus(id);
     }
-
 
 
     // Obtener todas las marcas activas
     @GetMapping("/active")
-    public ResponseEntity<List<Brand>> getActiveBrands() {
-        return ResponseEntity.ok(brandService.getActiveBrands());
+    public ResponseEntity<Message> getActiveBrands() {
+        return brandService.getActiveBrands();
     }
-
-
-
 
     // Obtener todas las marcas inactivas
     @GetMapping("/inactive")
-    public ResponseEntity<List<Brand>> getInactiveBrands() {
-        return ResponseEntity.ok(brandService.getInactiveBrands());
-    }
-
-
-
-
-    // Eliminar marca
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        brandService.deleteBrand(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Message> getInactiveBrands() {
+        return brandService.getInactiveBrands();
     }
 }
