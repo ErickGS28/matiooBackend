@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/item-types")
 @Validated
 public class ItemTypeController {
+
     @Autowired
     private final ItemTypeService itemTypeService;
 
@@ -25,6 +26,12 @@ public class ItemTypeController {
         return itemTypeService.findAllItemTypes();
     }
 
+    // Obtener tipo de bien por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Message> findById(@PathVariable Long id) {
+        return itemTypeService.findById(id);
+    }
+
     // Crear nuevo tipo de bien
     @PostMapping("/save")
     public ResponseEntity<Message> create(@Validated(ItemTypeDTO.Create.class) @RequestBody ItemTypeDTO dto) {
@@ -32,15 +39,13 @@ public class ItemTypeController {
     }
 
     // Actualizar tipo de bien
-    @PutMapping("update/{id}")
-    public ResponseEntity<Message> update(
-            @PathVariable Long id,
-            @Validated(ItemTypeDTO.Update.class) @RequestBody ItemTypeDTO dto) {
-        return itemTypeService.updateItemType(id, dto);
+    @PutMapping("/update")
+    public ResponseEntity<Message> update(@Validated(ItemTypeDTO.Update.class) @RequestBody ItemTypeDTO dto) {
+        return itemTypeService.updateItemType(dto);
     }
 
-    // Cambiar estado de un tipo de bien
-    @PutMapping("/status/{id}")
+    // Cambiar estado de un tipo de bien (Activa/Inactiva)
+    @PutMapping("/change-status/{id}")
     public ResponseEntity<Message> changeStatus(@PathVariable Long id) {
         return itemTypeService.changeStatus(id);
     }
@@ -54,5 +59,6 @@ public class ItemTypeController {
     // Obtener todos los tipos de bien inactivos
     @GetMapping("/inactive")
     public ResponseEntity<Message> getInactiveItemTypes() {
-        return itemTypeService.getInactiveItemTypes();     }
+        return itemTypeService.getInactiveItemTypes();
+    }
 }
