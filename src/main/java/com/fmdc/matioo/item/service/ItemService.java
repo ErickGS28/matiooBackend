@@ -10,9 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fmdc.matioo.brand.model.Brand;
 import com.fmdc.matioo.item.model.Item;
 import com.fmdc.matioo.item.model.ItemDTO;
 import com.fmdc.matioo.item.repository.ItemRepository;
+import com.fmdc.matioo.item_model.model.ItemModel;
+import com.fmdc.matioo.item_type.model.ItemType;
+import com.fmdc.matioo.user.model.AppUser;
 import com.fmdc.matioo.utils.Message;
 import com.fmdc.matioo.utils.TypesResponse;
 
@@ -38,6 +42,74 @@ public class ItemService {
                 .orElse(new ResponseEntity<>(new Message("El bien no fue encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
     }
 
+    //FIND BY MODEL
+    //id
+    public List<Item> getItemsByModel(ItemModel model) {
+        return itemRepository.findByModel(model);
+    }
+
+    // name
+    public List<Item> getItemsByModelName(String modelName) {
+        return itemRepository.findByModel_Name(modelName);
+    }
+
+    //FIND BY ITEMTYPE
+    //id
+    public List<Item> getItemsByItemType(ItemType itemType) {
+        return itemRepository.findByItemType(itemType);
+    }
+
+    // name
+    public List<Item> getItemsByItemTypeName(String itemTypeName) {
+        return itemRepository.findByItemType_Name(itemTypeName);
+    }
+
+    //FIND BY BRAND
+    //id
+    public List<Item> getItemsByBrand(Brand brand) {
+        return itemRepository.findByBrand(brand);
+    }
+
+    //name
+    public List<Item> getItemsByBrandName(String brandName) {
+        return itemRepository.findByBrand_Name(brandName);
+    }
+
+    // FIND ITEM BY SERIAL NUMBER
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findBySerialNumber(String serialNumber) {
+        return itemRepository.findBySerialNumber(serialNumber)
+                .map(item -> new ResponseEntity<>(new Message(item, "Bien encontrado", TypesResponse.SUCCESS), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(new Message("El bien no fue encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
+    }
+
+    // FIND ITEM BY CODE
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findByCode(String code) {
+        return itemRepository.findByCode(code)
+                .map(item -> new ResponseEntity<>(new Message(item, "Bien encontrado", TypesResponse.SUCCESS), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(new Message("El bien no fue encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
+    }
+
+    //FIND BY ASSIGNEDTO
+    //id
+    public List<Item> getItemsByAssignedTo(AppUser assignedTo) {
+        return itemRepository.findByAssignedTo(assignedTo);
+    }
+
+    //name
+    public List<Item> getItemsByAssignedToFullName(String assignedToFullName) {
+        return itemRepository.findByAssignedTo_FullName(assignedToFullName);
+    }
+
+    // FIND ITEM BY LOCATION
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findByLocation(String location) {
+        return itemRepository.findByLocation(location)
+                .map(item -> new ResponseEntity<>(new Message(item, "Bien encontrado", TypesResponse.SUCCESS), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(new Message("El bien no fue encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
+    }
+
     // CREATE ITEM
     public ResponseEntity<Message> createItem(ItemDTO dto) {
         if (itemRepository.existsBySerialNumber(dto.getSerialNumber())) {
@@ -48,7 +120,6 @@ public class ItemService {
             return ResponseEntity.badRequest().body(new Message("El código ya existe.", TypesResponse.WARNING));
         }
 
-        
         try {
             Item item = new Item(
                     dto.getItemType(),
@@ -104,17 +175,25 @@ public class ItemService {
         return new ResponseEntity<>(new Message(item, "El bien se ha actualizado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-
-    // GET ACTIVE ITEMS
-    public List<Item> getActiveModels() {
-        return itemRepository.findByStatus(true);
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> getActiveItems() {
+        List<Item> activeItems = itemRepository.findByStatus(true);
+        if (activeItems.isEmpty()) {
+            return new ResponseEntity<>(new Message("No hay bienes activos.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new Message(activeItems, "Bienes activos obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // GET INACTIVE ITEMS
-    public List<Item> getInactiveModels() {
-        return itemRepository.findByStatus(false);
+    //BIENES INACTIVOS
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> getInactiveItems() {
+        List<Item> inactiveItems = itemRepository.findByStatus(false);
+        if (inactiveItems.isEmpty()) {
+            return new ResponseEntity<>(new Message("No hay bienes inactivos.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new Message(inactiveItems, "Bienes inactivos obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
-    
+
     // CHANGE USER STATUS (ENABLE/DISABLE)
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> changeStatus(Long id) {
@@ -131,6 +210,3 @@ public class ItemService {
     }
 
 }
-
-
-

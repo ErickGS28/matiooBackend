@@ -41,8 +41,8 @@ public class ItemDTO {
     @NotNull(groups = {Create.class, Update.class}, message = "El Asignado del bien no puede estar vacío.")
     private AppUser assignedTo;    
     
-    @NotBlank(groups = {Create.class, Update.class}, message = "El Dueño del bien no puede estar vacío.")
-    @Size(max = 100, groups = {Create.class, Update.class}, message = "El Dueño del bien no puede exceder los 100 caracteres.")
+    @NotBlank(groups = {Create.class, Update.class}, message = "La ubicacion no puede estar vacía.")
+    @Size(max = 100, groups = {Create.class, Update.class}, message = "La ubicacion no puede exceder los 100 caracteres.")
     private String location;
     
     @NotNull(groups = {ChangeStatus.class}, message = "El estado no puede estar vacío")
