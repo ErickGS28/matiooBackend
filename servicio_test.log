@@ -4250,3 +4250,591 @@ java.sql.SQLException: Connection is read-only. Queries leading to data modifica
 2025-02-20T12:47:04.999-06:00  INFO 24660 --- [matioo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-02-20T12:47:05.005-06:00  INFO 24660 --- [matioo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-02-20T12:47:05.017-06:00  INFO 24660 --- [matioo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26T19:28:12.976-06:00  INFO 14432 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 14432 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T19:28:12.981-06:00  INFO 14432 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T19:28:14.592-06:00  INFO 14432 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T19:28:14.747-06:00  INFO 14432 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136 ms. Found 4 JPA repository interfaces.
+2025-02-26T19:28:15.921-06:00  INFO 14432 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T19:28:15.952-06:00  INFO 14432 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T19:28:15.954-06:00  INFO 14432 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T19:28:16.094-06:00  INFO 14432 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T19:28:16.097-06:00  INFO 14432 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3011 ms
+2025-02-26T19:28:16.413-06:00  INFO 14432 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T19:28:16.549-06:00  INFO 14432 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T19:28:16.631-06:00  INFO 14432 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T19:28:17.154-06:00  INFO 14432 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T19:28:17.230-06:00  INFO 14432 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T19:28:17.667-06:00  INFO 14432 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@595ec862
+2025-02-26T19:28:17.671-06:00  INFO 14432 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T19:28:17.755-06:00  WARN 14432 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T19:28:17.758-06:00  WARN 14432 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T19:28:17.809-06:00  INFO 14432 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T19:28:19.474-06:00  INFO 14432 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T19:28:19.605-06:00  INFO 14432 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T19:28:20.539-06:00  WARN 14432 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T19:28:20.630-06:00  INFO 14432 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T19:28:21.672-06:00  INFO 14432 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T19:28:21.686-06:00  INFO 14432 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 9.529 seconds (process running for 10.092)
+2025-02-26T19:29:58.073-06:00  INFO 14432 --- [matioo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T19:29:58.075-06:00  INFO 14432 --- [matioo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T19:29:58.080-06:00  INFO 14432 --- [matioo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-26T19:37:42.176-06:00  INFO 624 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 624 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T19:37:42.184-06:00  INFO 624 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T19:37:43.575-06:00  INFO 624 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T19:37:43.759-06:00  INFO 624 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 164 ms. Found 4 JPA repository interfaces.
+2025-02-26T19:37:44.988-06:00  INFO 624 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T19:37:45.017-06:00  INFO 624 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T19:37:45.019-06:00  INFO 624 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T19:37:45.228-06:00  INFO 624 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T19:37:45.231-06:00  INFO 624 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2954 ms
+2025-02-26T19:37:45.620-06:00  INFO 624 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T19:37:45.738-06:00  INFO 624 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T19:37:45.815-06:00  INFO 624 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T19:37:46.325-06:00  INFO 624 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T19:37:46.386-06:00  INFO 624 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T19:37:46.838-06:00  INFO 624 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53e28097
+2025-02-26T19:37:46.842-06:00  INFO 624 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T19:37:46.918-06:00  WARN 624 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T19:37:46.920-06:00  WARN 624 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T19:37:46.958-06:00  INFO 624 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T19:37:48.631-06:00  INFO 624 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T19:37:48.799-06:00  INFO 624 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T19:37:50.006-06:00  WARN 624 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T19:37:50.134-06:00  INFO 624 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T19:37:51.558-06:00  INFO 624 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T19:37:51.574-06:00  INFO 624 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 10.211 seconds (process running for 10.846)
+2025-02-26T19:38:04.897-06:00  INFO 624 --- [matioo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T19:38:04.899-06:00  INFO 624 --- [matioo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T19:38:04.904-06:00  INFO 624 --- [matioo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-02-26T19:53:10.687-06:00  INFO 8744 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 8744 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T19:53:10.692-06:00  INFO 8744 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T19:53:12.307-06:00  INFO 8744 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T19:53:12.515-06:00  INFO 8744 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 183 ms. Found 4 JPA repository interfaces.
+2025-02-26T19:53:14.060-06:00  INFO 8744 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T19:53:14.093-06:00  INFO 8744 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T19:53:14.094-06:00  INFO 8744 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T19:53:14.238-06:00  INFO 8744 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T19:53:14.240-06:00  INFO 8744 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3454 ms
+2025-02-26T19:53:14.509-06:00  INFO 8744 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T19:53:14.731-06:00  INFO 8744 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T19:53:14.879-06:00  INFO 8744 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T19:53:15.584-06:00  INFO 8744 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T19:53:15.654-06:00  INFO 8744 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T19:53:16.077-06:00  INFO 8744 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@595ec862
+2025-02-26T19:53:16.081-06:00  INFO 8744 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T19:53:16.155-06:00  WARN 8744 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T19:53:16.158-06:00  WARN 8744 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T19:53:16.199-06:00  INFO 8744 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T19:53:17.917-06:00  INFO 8744 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T19:53:18.025-06:00  INFO 8744 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T19:53:18.531-06:00 ERROR 8744 --- [matioo] [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'jwtUtil' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtUtil.class]: null
+2025-02-26T19:53:18.598-06:00  INFO 8744 --- [matioo] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-26T19:53:18.603-06:00  WARN 8744 --- [matioo] [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:842)
+2025-02-26T19:53:18.607-06:00  WARN 8744 --- [matioo] [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1061)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:842)
+2025-02-26T19:53:18.614-06:00  WARN 8744 --- [matioo] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-02-26T19:53:18.619-06:00  INFO 8744 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T19:53:18.630-06:00  INFO 8744 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26T19:53:18.662-06:00  INFO 8744 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26T19:53:18.681-06:00  INFO 8744 --- [matioo] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-26T19:53:18.723-06:00 ERROR 8744 --- [matioo] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.2.jar:3.4.2]
+	at com.fmdc.matioo.MatiooApplication.main(MatiooApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:516) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:222) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'jwtUtil' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtUtil.class]: null
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4426) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtil' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtUtil.class]: null
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1343) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1228) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 54 common frames omitted
+Caused by: java.lang.ExceptionInInitializerError: null
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:196) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1337) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 65 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Last unit does not have enough valid bits
+	at java.base/java.util.Base64$Decoder.decode0(Base64.java:868) ~[na:na]
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:566) ~[na:na]
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:589) ~[na:na]
+	at com.fmdc.matioo.security.JwtUtil.<clinit>(JwtUtil.java:18) ~[classes/:na]
+	... 73 common frames omitted
+
+2025-02-26T19:54:55.730-06:00  INFO 12268 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 12268 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T19:54:55.736-06:00  INFO 12268 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T19:54:57.703-06:00  INFO 12268 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T19:54:57.901-06:00  INFO 12268 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 178 ms. Found 4 JPA repository interfaces.
+2025-02-26T19:54:59.161-06:00  INFO 12268 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T19:54:59.190-06:00  INFO 12268 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T19:54:59.192-06:00  INFO 12268 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T19:54:59.320-06:00  INFO 12268 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T19:54:59.321-06:00  INFO 12268 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3474 ms
+2025-02-26T19:54:59.571-06:00  INFO 12268 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T19:54:59.672-06:00  INFO 12268 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T19:54:59.740-06:00  INFO 12268 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T19:55:00.259-06:00  INFO 12268 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T19:55:00.313-06:00  INFO 12268 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T19:55:00.722-06:00  INFO 12268 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75f4d8a8
+2025-02-26T19:55:00.725-06:00  INFO 12268 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T19:55:00.798-06:00  WARN 12268 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T19:55:00.801-06:00  WARN 12268 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T19:55:00.842-06:00  INFO 12268 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T19:55:02.383-06:00  INFO 12268 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T19:55:02.497-06:00  INFO 12268 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T19:55:03.445-06:00  WARN 12268 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T19:55:03.531-06:00  INFO 12268 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T19:55:04.533-06:00  INFO 12268 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T19:55:04.546-06:00  INFO 12268 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 9.717 seconds (process running for 10.408)
+2025-02-26T19:55:25.935-06:00  INFO 12268 --- [matioo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T19:55:25.936-06:00  INFO 12268 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T19:55:25.941-06:00  INFO 12268 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-02-26T20:04:44.086-06:00  INFO 2572 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 2572 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:04:44.094-06:00  INFO 2572 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:04:46.061-06:00  INFO 2572 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:04:46.201-06:00  INFO 2572 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:04:47.457-06:00  INFO 2572 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:04:47.491-06:00  INFO 2572 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:04:47.495-06:00  INFO 2572 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:04:47.670-06:00  INFO 2572 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:04:47.671-06:00  INFO 2572 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3435 ms
+2025-02-26T20:04:48.069-06:00  INFO 2572 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:04:48.182-06:00  INFO 2572 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:04:48.259-06:00  INFO 2572 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:04:48.781-06:00  INFO 2572 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:04:48.847-06:00  INFO 2572 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:04:49.324-06:00  INFO 2572 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69ba72da
+2025-02-26T20:04:49.329-06:00  INFO 2572 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:04:49.406-06:00  WARN 2572 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:04:49.409-06:00  WARN 2572 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:04:49.461-06:00  INFO 2572 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:04:50.829-06:00  INFO 2572 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:04:50.940-06:00  INFO 2572 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:04:51.850-06:00  WARN 2572 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T20:04:51.920-06:00  INFO 2572 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T20:04:53.067-06:00  INFO 2572 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T20:04:53.085-06:00  INFO 2572 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 9.905 seconds (process running for 10.838)
+2025-02-26T20:04:58.802-06:00  INFO 2572 --- [matioo] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T20:04:58.803-06:00  INFO 2572 --- [matioo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T20:04:58.807-06:00  INFO 2572 --- [matioo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-02-26T20:10:45.711-06:00  INFO 5236 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 5236 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:10:45.718-06:00  INFO 5236 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:10:47.806-06:00  INFO 5236 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:10:48.012-06:00  INFO 5236 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 175 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:10:49.549-06:00  INFO 5236 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:10:49.574-06:00  INFO 5236 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:10:49.575-06:00  INFO 5236 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:10:49.739-06:00  INFO 5236 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:10:49.740-06:00  INFO 5236 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3897 ms
+2025-02-26T20:10:50.067-06:00  INFO 5236 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:10:50.207-06:00  INFO 5236 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:10:50.345-06:00  INFO 5236 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:10:51.220-06:00  INFO 5236 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:10:51.324-06:00  INFO 5236 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:10:51.918-06:00  INFO 5236 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@9f2376f
+2025-02-26T20:10:51.925-06:00  INFO 5236 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:10:52.020-06:00  WARN 5236 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:10:52.023-06:00  WARN 5236 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:10:52.077-06:00  INFO 5236 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:10:53.886-06:00  INFO 5236 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:10:54.029-06:00  INFO 5236 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:10:55.162-06:00  WARN 5236 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T20:10:55.254-06:00  INFO 5236 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T20:10:56.509-06:00  INFO 5236 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T20:10:56.528-06:00  INFO 5236 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 11.812 seconds (process running for 12.567)
+2025-02-26T20:11:02.318-06:00  INFO 5236 --- [matioo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T20:11:02.445-06:00  INFO 5236 --- [matioo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T20:11:02.487-06:00  INFO 5236 --- [matioo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+2025-02-26T20:13:15.334-06:00  INFO 11276 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 11276 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:13:15.342-06:00  INFO 11276 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:13:17.510-06:00  INFO 11276 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:13:17.691-06:00  INFO 11276 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 158 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:13:19.993-06:00  INFO 11276 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:13:20.036-06:00  INFO 11276 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:13:20.038-06:00  INFO 11276 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:13:20.293-06:00  INFO 11276 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:13:20.297-06:00  INFO 11276 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4820 ms
+2025-02-26T20:13:20.765-06:00  INFO 11276 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:13:20.949-06:00  INFO 11276 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:13:21.073-06:00  INFO 11276 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:13:21.830-06:00  INFO 11276 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:13:21.935-06:00  INFO 11276 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:13:22.572-06:00  INFO 11276 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@797f97e3
+2025-02-26T20:13:22.577-06:00  INFO 11276 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:13:22.670-06:00  WARN 11276 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:13:22.674-06:00  WARN 11276 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:13:22.731-06:00  INFO 11276 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:13:24.659-06:00  INFO 11276 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:13:24.792-06:00  INFO 11276 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:13:25.865-06:00  WARN 11276 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T20:13:25.948-06:00  INFO 11276 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T20:13:27.051-06:00  INFO 11276 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T20:13:27.066-06:00  INFO 11276 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 12.693 seconds (process running for 13.639)
+2025-02-26T20:13:34.339-06:00  INFO 11276 --- [matioo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T20:13:34.341-06:00  INFO 11276 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T20:13:34.347-06:00  INFO 11276 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-02-26T20:14:37.726-06:00  INFO 4780 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 4780 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:14:37.732-06:00  INFO 4780 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:14:39.555-06:00  INFO 4780 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:14:39.709-06:00  INFO 4780 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:14:40.954-06:00  INFO 4780 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:14:40.980-06:00  INFO 4780 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:14:40.981-06:00  INFO 4780 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:14:41.125-06:00  INFO 4780 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:14:41.127-06:00  INFO 4780 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3255 ms
+2025-02-26T20:14:41.405-06:00  INFO 4780 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:14:41.537-06:00  INFO 4780 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:14:41.630-06:00  INFO 4780 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:14:42.216-06:00  INFO 4780 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:14:42.296-06:00  INFO 4780 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:14:42.906-06:00  INFO 4780 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69ba72da
+2025-02-26T20:14:42.910-06:00  INFO 4780 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:14:42.990-06:00  WARN 4780 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:14:42.993-06:00  WARN 4780 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:14:43.046-06:00  INFO 4780 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:14:44.770-06:00  INFO 4780 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:14:44.889-06:00  INFO 4780 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:14:45.901-06:00  WARN 4780 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T20:14:45.990-06:00  INFO 4780 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-02-26T20:14:47.051-06:00  INFO 4780 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T20:14:47.066-06:00  INFO 4780 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 10.373 seconds (process running for 11.184)
+2025-02-26T20:14:51.998-06:00  INFO 4780 --- [matioo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T20:14:52.001-06:00  INFO 4780 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T20:14:52.004-06:00  INFO 4780 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-26T20:17:40.719-06:00  INFO 10100 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 10100 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:17:40.725-06:00  INFO 10100 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:17:42.734-06:00  INFO 10100 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:17:42.900-06:00  INFO 10100 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 145 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:17:44.075-06:00  INFO 10100 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:17:44.099-06:00  INFO 10100 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:17:44.100-06:00  INFO 10100 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:17:44.257-06:00  INFO 10100 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:17:44.257-06:00  INFO 10100 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3418 ms
+2025-02-26T20:17:44.588-06:00  INFO 10100 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:17:44.694-06:00  INFO 10100 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:17:44.762-06:00  INFO 10100 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:17:45.387-06:00  INFO 10100 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:17:45.451-06:00  INFO 10100 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:17:45.917-06:00  INFO 10100 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2487e20
+2025-02-26T20:17:45.920-06:00  INFO 10100 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:17:45.999-06:00  WARN 10100 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:17:46.002-06:00  WARN 10100 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:17:46.042-06:00  INFO 10100 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:17:47.513-06:00  INFO 10100 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:17:47.606-06:00  INFO 10100 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:17:48.352-06:00  WARN 10100 --- [matioo] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\user\controller\UserController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userService' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\user\service\UserService.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'org.springframework.security.crypto.password.PasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-02-26T20:17:48.354-06:00  INFO 10100 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:17:48.360-06:00  INFO 10100 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26T20:17:48.383-06:00  INFO 10100 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-26T20:17:48.389-06:00  INFO 10100 --- [matioo] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-26T20:17:48.410-06:00  INFO 10100 --- [matioo] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-26T20:17:48.466-06:00 ERROR 10100 --- [matioo] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in com.fmdc.matioo.user.service.UserService required a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' in your configuration.
+
+2025-02-26T20:21:49.514-06:00  INFO 16148 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 16148 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:21:49.522-06:00  INFO 16148 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:21:51.092-06:00  INFO 16148 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:21:51.309-06:00  INFO 16148 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 189 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:21:52.726-06:00  INFO 16148 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:21:52.762-06:00  INFO 16148 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:21:52.764-06:00  INFO 16148 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:21:52.903-06:00  INFO 16148 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:21:52.906-06:00  INFO 16148 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3236 ms
+2025-02-26T20:21:53.286-06:00  INFO 16148 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:21:53.452-06:00  INFO 16148 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:21:53.554-06:00  INFO 16148 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:21:54.091-06:00  INFO 16148 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:21:54.187-06:00  INFO 16148 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:21:54.843-06:00  INFO 16148 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4571cebe
+2025-02-26T20:21:54.849-06:00  INFO 16148 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:21:54.925-06:00  WARN 16148 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:21:54.928-06:00  WARN 16148 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:21:54.976-06:00  INFO 16148 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:21:56.664-06:00  INFO 16148 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:21:56.775-06:00  INFO 16148 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:21:57.733-06:00  WARN 16148 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T20:21:57.882-06:00  INFO 16148 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-02-26T20:21:59.140-06:00  INFO 16148 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T20:21:59.166-06:00  INFO 16148 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 10.658 seconds (process running for 11.225)
+2025-02-26T20:22:03.668-06:00  INFO 16148 --- [matioo] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T20:22:03.669-06:00  INFO 16148 --- [matioo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T20:22:03.673-06:00  INFO 16148 --- [matioo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-26T20:39:03.413-06:00  INFO 16232 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 16232 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:39:03.422-06:00  INFO 16232 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:39:04.809-06:00  INFO 16232 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:39:05.006-06:00  INFO 16232 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 172 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:39:06.367-06:00  INFO 16232 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:39:06.407-06:00  INFO 16232 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:39:06.408-06:00  INFO 16232 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:39:06.549-06:00  INFO 16232 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:39:06.550-06:00  INFO 16232 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3018 ms
+2025-02-26T20:39:06.600-06:00 ERROR 16232 --- [matioo] [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'org.springframework.security.core.userdetails.UserDetailsService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-02-26T20:39:06.671-06:00  INFO 16232 --- [matioo] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-26T20:39:06.695-06:00  WARN 16232 --- [matioo] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-02-26T20:39:06.722-06:00  INFO 16232 --- [matioo] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-26T20:39:06.786-06:00 ERROR 16232 --- [matioo] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in com.fmdc.matioo.security.JwtAuthenticationFilter required a bean of type 'org.springframework.security.core.userdetails.UserDetailsService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.core.userdetails.UserDetailsService' in your configuration.
+
+2025-02-26T20:46:33.859-06:00  INFO 8824 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 8824 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:46:33.865-06:00  INFO 8824 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:46:35.306-06:00  INFO 8824 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:46:35.494-06:00  INFO 8824 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 166 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:46:36.776-06:00  INFO 8824 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:46:36.812-06:00  INFO 8824 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:46:36.813-06:00  INFO 8824 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:46:36.956-06:00  INFO 8824 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:46:36.958-06:00  INFO 8824 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2988 ms
+2025-02-26T20:46:37.023-06:00 ERROR 8824 --- [matioo] [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'securityConfig' defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jwtAuthenticationFilter': Requested bean is currently in creation: Is there an unresolvable circular reference or an asynchronous initialization dependency?
+2025-02-26T20:46:37.097-06:00  INFO 8824 --- [matioo] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-26T20:46:37.121-06:00  WARN 8824 --- [matioo] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-02-26T20:46:37.146-06:00  INFO 8824 --- [matioo] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-26T20:46:37.204-06:00 ERROR 8824 --- [matioo] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+???????
+|  jwtAuthenticationFilter defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\JwtAuthenticationFilter.class]
+?     ?
+|  securityConfig defined in file [C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes\com\fmdc\matioo\security\SecurityConfig.class]
+???????
+
+
+Action:
+
+Relying upon circular references is discouraged and they are prohibited by default. Update your application to remove the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting spring.main.allow-circular-references to true.
+
+2025-02-26T20:54:02.332-06:00  INFO 11800 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Starting MatiooApplication using Java 17.0.10 with PID 11800 (C:\Users\jonyo\OneDrive\Escritorio\matiooBackend\target\classes started by jonyo in C:\Users\jonyo\OneDrive\Escritorio\matiooBackend)
+2025-02-26T20:54:02.339-06:00  INFO 11800 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T20:54:04.218-06:00  INFO 11800 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T20:54:04.363-06:00  INFO 11800 --- [matioo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125 ms. Found 4 JPA repository interfaces.
+2025-02-26T20:54:05.437-06:00  INFO 11800 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T20:54:05.464-06:00  INFO 11800 --- [matioo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T20:54:05.466-06:00  INFO 11800 --- [matioo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-26T20:54:05.615-06:00  INFO 11800 --- [matioo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T20:54:05.616-06:00  INFO 11800 --- [matioo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3115 ms
+2025-02-26T20:54:05.864-06:00  INFO 11800 --- [matioo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T20:54:05.983-06:00  INFO 11800 --- [matioo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-26T20:54:06.064-06:00  INFO 11800 --- [matioo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T20:54:06.636-06:00  INFO 11800 --- [matioo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T20:54:06.715-06:00  INFO 11800 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T20:54:07.210-06:00  INFO 11800 --- [matioo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5529522f
+2025-02-26T20:54:07.214-06:00  INFO 11800 --- [matioo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T20:54:07.299-06:00  WARN 11800 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T20:54:07.303-06:00  WARN 11800 --- [matioo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T20:54:07.367-06:00  INFO 11800 --- [matioo] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T20:54:08.955-06:00  INFO 11800 --- [matioo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T20:54:09.055-06:00  INFO 11800 --- [matioo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:54:09.854-06:00  WARN 11800 --- [matioo] [main] r$InitializeUserDetailsManagerConfigurer : Found 2 UserDetailsService beans, with names [customUserDetailsService, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-02-26T20:54:09.964-06:00  WARN 11800 --- [matioo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T20:54:10.938-06:00  INFO 11800 --- [matioo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T20:54:10.963-06:00  INFO 11800 --- [matioo] [main] com.fmdc.matioo.MatiooApplication        : Started MatiooApplication in 9.975 seconds (process running for 10.582)
+2025-02-26T20:56:56.547-06:00  INFO 11800 --- [matioo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T20:56:56.548-06:00  INFO 11800 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T20:56:56.551-06:00  INFO 11800 --- [matioo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26T20:59:04.190-06:00  INFO 11800 --- [matioo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-26T20:59:04.275-06:00  INFO 11800 --- [matioo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-26T20:59:04.282-06:00  INFO 11800 --- [matioo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T20:59:04.286-06:00  INFO 11800 --- [matioo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-26T20:59:04.309-06:00  INFO 11800 --- [matioo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
