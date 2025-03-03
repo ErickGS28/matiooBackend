@@ -209,4 +209,34 @@ public class ItemService {
         return new ResponseEntity<>(new Message(item, "El status del bien ha sido cambiado", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
+    public ResponseEntity<Message> assignItem(Long id, Long userId) {
+        Optional<Item> optionalItem = itemRepository.findById(id);
+        if (!optionalItem.isPresent()) {
+            return new ResponseEntity<>(new Message("El bien no existe", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+
+        // Se crea el objeto AppUser con el ID proporcionado (idealmente, validar que el usuario exista a través de su repositorio)
+        AppUser user = new AppUser();
+        user.setId(userId);
+
+        Item item = optionalItem.get();
+        item.setAssignedTo(user);
+        itemRepository.save(item);
+
+        return new ResponseEntity<>(new Message(item, "El bien ha sido asignado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Message> unassignItem(Long id) {
+        Optional<Item> optionalItem = itemRepository.findById(id);
+        if (!optionalItem.isPresent()) {
+            return new ResponseEntity<>(new Message("El bien no existe", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+
+        Item item = optionalItem.get();
+        item.setAssignedTo(null);
+        itemRepository.save(item);
+
+        return new ResponseEntity<>(new Message(item, "El bien ha sido desasignado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
 }

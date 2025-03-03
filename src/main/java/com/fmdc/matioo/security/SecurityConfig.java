@@ -42,11 +42,6 @@ public class SecurityConfig {
 
                         // Rutas restringidas según rol:
                         // Solo usuarios con rol ADMIN podrán acceder a /brands/all
-                        .requestMatchers("/brands/all").hasAuthority("ADMIN")
-                        // Solo usuarios con rol RESPONSIBLE podrán acceder a /item-types/all
-                        .requestMatchers("/item-types/all").hasAuthority("RESPONSIBLE")
-                        // Solo usuarios con rol INTERN podrán acceder a /item-models/all
-                        .requestMatchers("/item-models/all").hasAuthority("INTERN") 
                         
                         // Cualquier otra ruta requiere autenticación
                         .anyRequest().authenticated()
