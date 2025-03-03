@@ -9,6 +9,7 @@ import com.fmdc.matioo.utils.Message;
 import com.fmdc.matioo.utils.TypesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,47 +27,56 @@ public class UserController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Message> getAllUsers() {
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Message> getById(@PathVariable Long id) {
         return userService.findById(id);
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Message> saveUser(@Validated(UserDTO.Register.class) @RequestBody UserDTO dto) {
         return userService.save(dto);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Message> updateUser(@Validated(UserDTO.Modify.class) @RequestBody UserDTO dto) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+        public ResponseEntity<Message> updateUser(@Validated(UserDTO.Modify.class) @RequestBody UserDTO dto) {
         return userService.update(dto);
     }
 
     @PutMapping("/update-profile")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
     public ResponseEntity<Message> updateProfile(
             @Validated(ProfileDTO.UpdateProfile.class) @RequestBody ProfileDTO dto) {
         return userService.updateProfile(dto);
     }
 
     @PutMapping("/change-password")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
     public ResponseEntity<Message> changePassword(@Validated @RequestBody ChangePasswordDTO dto) {
         return userService.changePassword(dto);
     }
 
     @PostMapping("/send-recovery-code/{email}")
-    public ResponseEntity<Message> sendRecoveryCode(@PathVariable String email) {
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
+        public ResponseEntity<Message> sendRecoveryCode(@PathVariable String email) {
         return userService.sendRecoveryCode(email);
     }
 
     @PostMapping("/verify-recovery-code")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
     public ResponseEntity<Message> verifyRecoveryCode(@Validated @RequestBody RecoveryDTO dto) {
         return userService.verifyRecoveryCode(dto);
     }
 
     @PutMapping("/reset-password")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
     public ResponseEntity<Message> resetPassword(@RequestBody Map<String, String> payload) {
         String email = payload.get("email");
         String newPassword = payload.get("newPassword");
@@ -77,6 +87,7 @@ public class UserController {
     }
 
     @PutMapping("/change-status/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Message> changeStatus(@PathVariable Long id) {
         return userService.changeStatus(id);
     }
