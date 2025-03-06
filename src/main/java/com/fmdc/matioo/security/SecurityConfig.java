@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Configurar CORS
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
-
+                        .requestMatchers("/users/save").permitAll()
                         // Rutas restringidas según rol:
                         // Solo usuarios con rol ADMIN podrán acceder a /brands/all
                         

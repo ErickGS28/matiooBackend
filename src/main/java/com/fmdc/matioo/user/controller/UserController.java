@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Message> saveUser(@Validated(UserDTO.Register.class) @RequestBody UserDTO dto) {
         return userService.save(dto);
     }

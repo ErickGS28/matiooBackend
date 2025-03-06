@@ -1,153 +1,144 @@
 package com.fmdc.matioo.item.model;
-import com.fmdc.matioo.brand.model.Brand;
-import com.fmdc.matioo.item_model.model.ItemModel;
-import com.fmdc.matioo.item_type.model.ItemType;
-import com.fmdc.matioo.user.model.AppUser;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-
-
 public class ItemDTO {
 
     @NotNull(groups = {Update.class, ChangeStatus.class}, message = "El ID no puede ser nulo.")
     private Long id;
-    
-    @NotNull(groups = {Create.class, Update.class}, message = "El Tipo del bien no puede estar vacío.")
-    // Aquí removí el @Size, ya que ItemType es un objeto, no una cadena
-    private ItemType itemType;
-    
-    @NotNull(groups = {Create.class, Update.class}, message = "La Marca del bien no puede estar vacía.")
-    // Aquí removí el @Size, ya que Brand es un objeto, no una cadena
-    private Brand brand;
-    
-    @NotNull(groups = {Create.class, Update.class}, message = "El Modelo del bien no puede estar vacía.")
-    // Aquí removí el @Size, ya que ItemModel es un objeto, no una cadena
-    private ItemModel model;
-    
-    @NotBlank(groups = {Create.class, Update.class}, message = "El Numero de serie del bien no puede estar vacía.")
-    @Size(max = 100, groups = {Create.class, Update.class}, message = "El Numero de serie del bien no puede exceder los 100 caracteres.")
+
+    @NotNull(groups = {Create.class, Update.class}, message = "El id del tipo de bien no puede estar vacío.")
+    private Long itemTypeId;
+
+    @NotNull(groups = {Create.class, Update.class}, message = "El id de la marca no puede estar vacío.")
+    private Long brandId;
+
+    @NotNull(groups = {Create.class, Update.class}, message = "El id del modelo del bien no puede estar vacío.")
+    private Long modelId;
+
+    @NotBlank(groups = {Create.class, Update.class}, message = "El número de serie del bien no puede estar vacío.")
+    @Size(max = 100, groups = {Create.class, Update.class}, message = "El número de serie no puede exceder los 100 caracteres.")
     private String serialNumber;
-    
-    @NotBlank(groups = {Create.class, Update.class}, message = "El Codigo del bien no puede estar vacío.")
-    @Size(max = 100, groups = {Create.class, Update.class}, message = "El Codigo del bien no puede exceder los 100 caracteres.")
+
+    @NotBlank(groups = {Create.class, Update.class}, message = "El código del bien no puede estar vacío.")
+    @Size(max = 100, groups = {Create.class, Update.class}, message = "El código no puede exceder los 100 caracteres.")
     private String code;
-    
-    @NotNull(groups = {Create.class, Update.class}, message = "El Dueño del bien no puede estar vacío.")
-    private AppUser owner;
-    
-    @NotNull(groups = {Create.class, Update.class}, message = "El Asignado del bien no puede estar vacío.")
-    private AppUser assignedTo;    
-    
-    @NotBlank(groups = {Create.class, Update.class}, message = "La ubicacion no puede estar vacía.")
-    @Size(max = 100, groups = {Create.class, Update.class}, message = "La ubicacion no puede exceder los 100 caracteres.")
+
+    @NotNull(groups = {Create.class, Update.class}, message = "El id del dueño del bien no puede estar vacío.")
+    private Long ownerId;
+
+    // Si assignedTo puede ser nulo, puedes quitar el @NotNull
+    @NotNull(groups = {Create.class, Update.class}, message = "El id del usuario asignado no puede estar vacío.")
+    private Long assignedToId;
+
+    @NotBlank(groups = {Create.class, Update.class}, message = "La ubicación no puede estar vacía.")
+    @Size(max = 100, groups = {Create.class, Update.class}, message = "La ubicación no puede exceder los 100 caracteres.")
     private String location;
-    
+
     @NotNull(groups = {ChangeStatus.class}, message = "El estado no puede estar vacío")
     private Boolean status;
-    
+
     public ItemDTO() {}
 
-    public ItemDTO(Long id, ItemType itemType, Brand brand, ItemModel model,
-                String serialNumber, String code, AppUser owner,
-                AppUser assignedTo, String location, boolean status) {
+    public ItemDTO(Long id, Long itemTypeId, Long brandId, Long modelId,
+                   String serialNumber, String code, Long ownerId,
+                   Long assignedToId, String location, boolean status) {
         this.id = id;
-        this.itemType = itemType;
-        this.brand = brand;
-        this.model = model;
+        this.itemTypeId = itemTypeId;
+        this.brandId = brandId;
+        this.modelId = modelId;
         this.serialNumber = serialNumber;
         this.code = code;
-        this.owner = owner;
-        this.assignedTo = assignedTo;
+        this.ownerId = ownerId;
+        this.assignedToId = assignedToId;
         this.location = location;
         this.status = status;
     }
 
-   // GETTERS & SETTERS
-   public Long getId() {
-    return id;
-}
+    // GETTERS & SETTERS
+    public Long getId() {
+        return id;
+    }
 
-public void setId(Long id) {
-    this.id = id;
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-public ItemType getItemType() {
-    return itemType;
-}
+    public Long getItemTypeId() {
+        return itemTypeId;
+    }
 
-public void setItemType(ItemType itemType) {
-    this.itemType = itemType;
-}
+    public void setItemTypeId(Long itemTypeId) {
+        this.itemTypeId = itemTypeId;
+    }
 
-public Brand getBrand() {
-    return brand;
-}
+    public Long getBrandId() {
+        return brandId;
+    }
 
-public void setBrand(Brand brand) {
-    this.brand = brand;
-}
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
 
-public ItemModel getModel() {
-    return model;
-}
+    public Long getModelId() {
+        return modelId;
+    }
 
-public void setModel(ItemModel model) {
-    this.model = model;
-}
+    public void setModelId(Long modelId) {
+        this.modelId = modelId;
+    }
 
-public String getSerialNumber() {
-    return serialNumber;
-}
+    public String getSerialNumber() {
+        return serialNumber;
+    }
 
-public void setSerialNumber(String serialNumber) {
-    this.serialNumber = serialNumber;
-}
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
 
-public String getCode() {
-    return code;
-}
+    public String getCode() {
+        return code;
+    }
 
-public void setCode(String code) {
-    this.code = code;
-}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-public AppUser getOwner() {
-    return owner;
-}
+    public Long getOwnerId() {
+        return ownerId;
+    }
 
-public void setOwner(AppUser owner) {
-    this.owner = owner;
-}
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
 
-public AppUser getAssignedTo() {
-    return assignedTo;
-}
+    public Long getAssignedToId() {
+        return assignedToId;
+    }
 
-public void setAssignedTo(AppUser assignedTo) {
-    this.assignedTo = assignedTo;
-}
+    public void setAssignedToId(Long assignedToId) {
+        this.assignedToId = assignedToId;
+    }
 
-public String getLocation() {
-    return location;
-}
+    public String getLocation() {
+        return location;
+    }
 
-public void setLocation(String location) {
-    this.location = location;
-}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-public boolean isStatus() {
-    return status;
-}
+    public boolean isStatus() {
+        return status;
+    }
 
-public void setStatus(boolean status) {
-    this.status = status;
-}
-    
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
-    // Validaciones
+    // Interfaces para validación
     public interface Create {}
     public interface Update {}
     public interface ChangeStatus {}

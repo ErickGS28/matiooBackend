@@ -57,14 +57,12 @@ public class ItemController {
         model.setId(modelId); // Configura el modelo con el ID
         return itemService.getItemsByModel(model);
     }
-
     //nombre
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/byModelName/{modelName}")
     public List<Item> getItemsByModelName(@PathVariable String modelName) {
         return itemService.getItemsByModelName(modelName);
     }
-
     //BUSQUEDA POR MARCA
     //id
     @PreAuthorize("hasAuthority('ADMIN')")

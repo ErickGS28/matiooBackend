@@ -11,22 +11,37 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fmdc.matioo.brand.model.Brand;
+import com.fmdc.matioo.brand.repository.BrandRepository;
 import com.fmdc.matioo.item.model.Item;
 import com.fmdc.matioo.item.model.ItemDTO;
 import com.fmdc.matioo.item.repository.ItemRepository;
 import com.fmdc.matioo.item_model.model.ItemModel;
+import com.fmdc.matioo.item_model.repository.ItemModelRepository;
 import com.fmdc.matioo.item_type.model.ItemType;
+import com.fmdc.matioo.item_type.repository.ItemTypeRepository;
 import com.fmdc.matioo.user.model.AppUser;
+import com.fmdc.matioo.user.repository.AppUserRepository;
 import com.fmdc.matioo.utils.Message;
 import com.fmdc.matioo.utils.TypesResponse;
 
 @Service
 @Transactional
-
 public class ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private ItemTypeRepository itemTypeRepository;
+
+    @Autowired
+    private BrandRepository brandRepository;
+
+    @Autowired
+    private ItemModelRepository itemModelRepository;
+
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     // GET ALL ITEMS
     @Transactional(readOnly = true)
@@ -42,35 +57,32 @@ public class ItemService {
                 .orElse(new ResponseEntity<>(new Message("El bien no fue encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
     }
 
-    //FIND BY MODEL
-    //id
+    // FIND BY MODEL (id)
     public List<Item> getItemsByModel(ItemModel model) {
         return itemRepository.findByModel(model);
     }
 
-    // name
+    // FIND BY MODEL (name)
     public List<Item> getItemsByModelName(String modelName) {
         return itemRepository.findByModel_Name(modelName);
     }
 
-    //FIND BY ITEMTYPE
-    //id
+    // FIND BY ITEMTYPE (id)
     public List<Item> getItemsByItemType(ItemType itemType) {
         return itemRepository.findByItemType(itemType);
     }
 
-    // name
+    // FIND BY ITEMTYPE (name)
     public List<Item> getItemsByItemTypeName(String itemTypeName) {
         return itemRepository.findByItemType_Name(itemTypeName);
     }
 
-    //FIND BY BRAND
-    //id
+    // FIND BY BRAND (id)
     public List<Item> getItemsByBrand(Brand brand) {
         return itemRepository.findByBrand(brand);
     }
 
-    //name
+    // FIND BY BRAND (name)
     public List<Item> getItemsByBrandName(String brandName) {
         return itemRepository.findByBrand_Name(brandName);
     }
@@ -91,13 +103,12 @@ public class ItemService {
                 .orElse(new ResponseEntity<>(new Message("El bien no fue encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND));
     }
 
-    //FIND BY ASSIGNEDTO
-    //id
+    // FIND BY ASSIGNEDTO (id)
     public List<Item> getItemsByAssignedTo(AppUser assignedTo) {
         return itemRepository.findByAssignedTo(assignedTo);
     }
 
-    //name
+    // FIND BY ASSIGNEDTO (name)
     public List<Item> getItemsByAssignedToFullName(String assignedToFullName) {
         return itemRepository.findByAssignedTo_FullName(assignedToFullName);
     }
@@ -115,24 +126,36 @@ public class ItemService {
         if (itemRepository.existsBySerialNumber(dto.getSerialNumber())) {
             return ResponseEntity.badRequest().body(new Message("El número de serie ya existe.", TypesResponse.WARNING));
         }
-
         if (itemRepository.existsByCode(dto.getCode())) {
             return ResponseEntity.badRequest().body(new Message("El código ya existe.", TypesResponse.WARNING));
         }
-
         try {
+            // Cargar las entidades completas a partir de los ids del DTO
+            ItemType itemType = itemTypeRepository.findById(dto.getItemTypeId())
+                    .orElseThrow(() -> new RuntimeException("Tipo de bien no encontrado"));
+            Brand brand = brandRepository.findById(dto.getBrandId())
+                    .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
+            ItemModel model = itemModelRepository.findById(dto.getModelId())
+                    .orElseThrow(() -> new RuntimeException("Modelo no encontrado"));
+            AppUser owner = appUserRepository.findById(dto.getOwnerId())
+                    .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+            AppUser assignedTo = null;
+            if(dto.getAssignedToId() != null) {
+                assignedTo = appUserRepository.findById(dto.getAssignedToId())
+                        .orElseThrow(() -> new RuntimeException("Usuario asignado no encontrado"));
+            }
+
             Item item = new Item(
-                    dto.getItemType(),
-                    dto.getBrand(),
-                    dto.getModel(),
+                    itemType,
+                    brand,
+                    model,
                     dto.getSerialNumber(),
                     dto.getCode(),
-                    dto.getOwner(),
-                    dto.getAssignedTo(),
+                    owner,
+                    assignedTo,
                     dto.getLocation(),
                     true
             );
-
             item.setStatus(true);
             itemRepository.save(item);
 
@@ -151,28 +174,47 @@ public class ItemService {
         }
 
         // Verificar si el serialNumber o code ya están en uso
-        if (itemRepository.existsBySerialNumber(dto.getSerialNumber()) && !optionalItem.get().getSerialNumber().equals(dto.getSerialNumber())) {
+        Item existingItem = optionalItem.get();
+        if (itemRepository.existsBySerialNumber(dto.getSerialNumber()) && !existingItem.getSerialNumber().equals(dto.getSerialNumber())) {
             return new ResponseEntity<>(new Message("El número de serie ya está en uso", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        if (itemRepository.existsByCode(dto.getCode()) && !optionalItem.get().getCode().equals(dto.getCode())) {
+        if (itemRepository.existsByCode(dto.getCode()) && !existingItem.getCode().equals(dto.getCode())) {
             return new ResponseEntity<>(new Message("El código ya está en uso", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
-        // Actualizar el objeto
-        Item item = optionalItem.get();
-        item.setItemType(dto.getItemType());
-        item.setBrand(dto.getBrand());
-        item.setModel(dto.getModel());
-        item.setSerialNumber(dto.getSerialNumber());
-        item.setCode(dto.getCode());
-        item.setOwner(dto.getOwner());
-        item.setAssignedTo(dto.getAssignedTo());
-        item.setLocation(dto.getLocation());
-        item.setStatus(dto.isStatus());
+        try {
+            // Cargar las entidades completas a partir de los ids del DTO
+            ItemType itemType = itemTypeRepository.findById(dto.getItemTypeId())
+                    .orElseThrow(() -> new RuntimeException("Tipo de bien no encontrado"));
+            Brand brand = brandRepository.findById(dto.getBrandId())
+                    .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
+            ItemModel model = itemModelRepository.findById(dto.getModelId())
+                    .orElseThrow(() -> new RuntimeException("Modelo no encontrado"));
+            AppUser owner = appUserRepository.findById(dto.getOwnerId())
+                    .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+            AppUser assignedTo = null;
+            if(dto.getAssignedToId() != null) {
+                assignedTo = appUserRepository.findById(dto.getAssignedToId())
+                        .orElseThrow(() -> new RuntimeException("Usuario asignado no encontrado"));
+            }
 
-        itemRepository.save(item);
+            // Actualizar el objeto existente
+            existingItem.setItemType(itemType);
+            existingItem.setBrand(brand);
+            existingItem.setModel(model);
+            existingItem.setSerialNumber(dto.getSerialNumber());
+            existingItem.setCode(dto.getCode());
+            existingItem.setOwner(owner);
+            existingItem.setAssignedTo(assignedTo);
+            existingItem.setLocation(dto.getLocation());
+            existingItem.setStatus(dto.isStatus());
 
-        return new ResponseEntity<>(new Message(item, "El bien se ha actualizado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+            itemRepository.save(existingItem);
+
+            return new ResponseEntity<>(new Message(existingItem, "El bien se ha actualizado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+        } catch (DataIntegrityViolationException e) {
+            return new ResponseEntity<>(new Message("Error de integridad de datos", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Transactional(readOnly = true)
@@ -184,7 +226,7 @@ public class ItemService {
         return new ResponseEntity<>(new Message(activeItems, "Bienes activos obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    //BIENES INACTIVOS
+    // BIENES INACTIVOS
     @Transactional(readOnly = true)
     public ResponseEntity<Message> getInactiveItems() {
         List<Item> inactiveItems = itemRepository.findByStatus(false);
@@ -194,7 +236,7 @@ public class ItemService {
         return new ResponseEntity<>(new Message(inactiveItems, "Bienes inactivos obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // CHANGE USER STATUS (ENABLE/DISABLE)
+    // CHANGE ITEM STATUS (ENABLE/DISABLE)
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> changeStatus(Long id) {
         Optional<Item> optionalItem = itemRepository.findById(id);
@@ -215,9 +257,9 @@ public class ItemService {
             return new ResponseEntity<>(new Message("El bien no existe", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
-        // Se crea el objeto AppUser con el ID proporcionado (idealmente, validar que el usuario exista a través de su repositorio)
-        AppUser user = new AppUser();
-        user.setId(userId);
+        // Cargar el usuario completo
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         Item item = optionalItem.get();
         item.setAssignedTo(user);
@@ -238,5 +280,4 @@ public class ItemService {
 
         return new ResponseEntity<>(new Message(item, "El bien ha sido desasignado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
     }
-
 }
