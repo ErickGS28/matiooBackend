@@ -4,10 +4,12 @@ import com.fmdc.matioo.item_model.model.ItemModelDTO;
 import com.fmdc.matioo.item_model.service.ItemModelService;
 import com.fmdc.matioo.utils.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/item-models")
@@ -76,4 +78,13 @@ public class ItemModelController {
     public ResponseEntity<Message> deleteModel(@PathVariable Long id) {
         return itemModelService.deleteItemModel(id);
     }
+
+    @PostMapping(value = "/save-with-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Message> createModelWithImage(
+            @RequestPart("dto") @Validated(ItemModelDTO.Create.class) ItemModelDTO dto,
+            @RequestPart("image") MultipartFile file) {
+        return itemModelService.createItemModelWithImage(dto, file);
+    }
+
 }

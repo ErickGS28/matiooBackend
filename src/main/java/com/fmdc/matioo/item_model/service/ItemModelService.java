@@ -10,9 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ItemModelService {
@@ -129,5 +135,37 @@ public class ItemModelService {
         }
         itemModelRepository.deleteById(id);
         return new ResponseEntity<>(new Message("Modelo eliminado con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<Message> createItemModelWithImage(ItemModelDTO dto, MultipartFile file) {
+        if (itemModelRepository.existsByName(dto.getName())) {
+            return new ResponseEntity<>(new Message("El nombre del modelo ya existe.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+        try {
+            String uploadDir = System.getProperty("user.dir") + "/uploads/images";
+            Path uploadPath = Paths.get(uploadDir);
+
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            Path filePath = uploadPath.resolve(fileName);
+
+            file.transferTo(filePath.toFile());
+            dto.setPhoto("uploads/images/" + fileName);
+
+        } catch (IOException e) {
+            return new ResponseEntity<>(new Message("Error al subir la imagen: " + e.getMessage(), TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        // Crear el modelo usando los datos del DTO y la ruta de la imagen
+        ItemModel model = new ItemModel();
+        model.setName(dto.getName());
+        model.setPhoto(dto.getPhoto());
+        model.setStatus(dto.getStatus() != null ? dto.getStatus() : true);
+        itemModelRepository.save(model);
+        return new ResponseEntity<>(new Message(model, "Modelo creado con imagen con éxito.", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
 }
