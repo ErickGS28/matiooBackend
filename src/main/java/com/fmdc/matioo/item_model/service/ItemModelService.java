@@ -52,7 +52,6 @@ public class ItemModelService {
         ItemModel model = new ItemModel();
         model.setName(dto.getName());
         model.setPhoto(dto.getPhoto());
-        model.setStatus(dto.getStatus() != null ? dto.getStatus() : true);
         itemModelRepository.save(model);
         return new ResponseEntity<>(new Message(model, "Modelo creado con éxito.", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
@@ -69,7 +68,7 @@ public class ItemModelService {
             return new ResponseEntity<>(new Message("El modelo no existe.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
-        ItemModel model = optionalModel.get();
+        ItemModel model = optionalModel.get();  
         if (dto.getName() != null && !dto.getName().equals(model.getName())) {
             if (itemModelRepository.existsByNameAndIdNot(dto.getName(), dto.getId())) {
                 return new ResponseEntity<>(new Message("El nombre del modelo ya existe.", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
@@ -79,10 +78,6 @@ public class ItemModelService {
 
         if (dto.getPhoto() != null) {
             model.setPhoto(dto.getPhoto());
-        }
-
-        if (dto.getStatus() != null) {
-            model.setStatus(dto.getStatus());
         }
 
         itemModelRepository.save(model);
@@ -103,9 +98,6 @@ public class ItemModelService {
     @Transactional(readOnly = true)
     public ResponseEntity<Message> getInactiveModels() {
         List<ItemModel> inactiveModels = itemModelRepository.findByStatus(false);
-        if (inactiveModels.isEmpty()) {
-            return new ResponseEntity<>(new Message("No hay modelos inactivos.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(new Message(inactiveModels, "Modelos inactivos obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
@@ -164,7 +156,6 @@ public class ItemModelService {
         ItemModel model = new ItemModel();
         model.setName(dto.getName());
         model.setPhoto(dto.getPhoto());
-        model.setStatus(dto.getStatus() != null ? dto.getStatus() : true);
         itemModelRepository.save(model);
         return new ResponseEntity<>(new Message(model, "Modelo creado con imagen con éxito.", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }

@@ -91,4 +91,15 @@ public class UserController {
     public ResponseEntity<Message> changeStatus(@PathVariable Long id) {
         return userService.changeStatus(id);
     }
+
+    @GetMapping("/active")
+    public ResponseEntity<Message> getActiveUsers() {
+        return userService.findActiveUsers();
+    }
+
+    // Obtener usuarios inactivos
+    @GetMapping("/inactive")
+    public ResponseEntity<Message> getInactiveUsers() {
+        return userService.findInactiveUsers();
+    }
 }

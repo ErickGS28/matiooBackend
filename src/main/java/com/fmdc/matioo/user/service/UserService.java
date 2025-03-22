@@ -108,11 +108,11 @@ public class UserService {
         user.setEmail(dto.getEmail());
         user.setLocation(dto.getLocation());
         user.setRole(dto.getRole());
-        user.setStatus(dto.getStatus());
 
         userRepository.save(user);
         return new ResponseEntity<>(new Message(user, "Usuario actualizado con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
     }
+
 
 
     // Actualizar perfil de usuario
@@ -244,5 +244,24 @@ public class UserService {
 
         return new ResponseEntity<>(new Message(user, statusMessage, TypesResponse.SUCCESS), HttpStatus.OK);
     }
+
+    // Obtener usuarios activos
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findActiveUsers() {
+        return new ResponseEntity<>(
+                new Message(userRepository.findByStatus(true), "Lista de usuarios activos obtenida con éxito.", TypesResponse.SUCCESS),
+                HttpStatus.OK
+        );
+    }
+
+    // Obtener usuarios inactivos
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findInactiveUsers() {
+        return new ResponseEntity<>(
+                new Message(userRepository.findByStatus(false), "Lista de usuarios inactivos obtenida con éxito.", TypesResponse.SUCCESS),
+                HttpStatus.OK
+        );
+    }
+
 
 }

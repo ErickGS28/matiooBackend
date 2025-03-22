@@ -13,8 +13,6 @@ public class ItemModelDTO {
     @Size(max = 255, groups = {Create.class, Update.class}, message = "La URL de la foto no puede tener más de 255 caracteres.")
     private String photo;
 
-    @NotNull(groups = {ChangeStatus.class}, message = "El estado no puede ser nulo.")
-    private Boolean status;
 
     // Constructor vacío
     public ItemModelDTO() {}
@@ -22,7 +20,6 @@ public class ItemModelDTO {
     public ItemModelDTO(String name, String photo, Boolean status) {
         this.name = name;
         this.photo = photo;
-        this.status = status;
     }
 
     public Long getId() {
@@ -47,14 +44,6 @@ public class ItemModelDTO {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
 

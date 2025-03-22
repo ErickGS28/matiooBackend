@@ -26,6 +26,23 @@ public class CommonAreaService {
         );
     }
 
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findActiveAreas() {
+        return new ResponseEntity<>(
+                new Message(commonAreaRepository.findByStatus(true), "Lista de áreas activas obtenida con éxito.", TypesResponse.SUCCESS),
+                HttpStatus.OK
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findInactiveAreas() {
+        return new ResponseEntity<>(
+                new Message(commonAreaRepository.findByStatus(false), "Lista de áreas inactivas obtenida con éxito.", TypesResponse.SUCCESS),
+                HttpStatus.OK
+        );
+    }
+
+
     @Transactional
     public ResponseEntity<Message> create(CommonAreaDTO dto) {
         if (commonAreaRepository.existsByName(dto.getName())) {

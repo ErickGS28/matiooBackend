@@ -172,7 +172,6 @@ public class ItemService {
         if (!optionalItem.isPresent()) {
             return new ResponseEntity<>(new Message("El bien no se encuentra", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
-
         // Verificar si el serialNumber o code ya están en uso
         Item existingItem = optionalItem.get();
         if (itemRepository.existsBySerialNumber(dto.getSerialNumber()) && !existingItem.getSerialNumber().equals(dto.getSerialNumber())) {
@@ -207,8 +206,6 @@ public class ItemService {
             existingItem.setOwner(owner);
             existingItem.setAssignedTo(assignedTo);
             existingItem.setLocation(dto.getLocation());
-            existingItem.setStatus(dto.isStatus());
-
             itemRepository.save(existingItem);
 
             return new ResponseEntity<>(new Message(existingItem, "El bien se ha actualizado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);

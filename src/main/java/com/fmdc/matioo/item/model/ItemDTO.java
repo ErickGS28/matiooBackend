@@ -37,14 +37,11 @@ public class ItemDTO {
     @Size(max = 100, groups = {Create.class, Update.class}, message = "La ubicación no puede exceder los 100 caracteres.")
     private String location;
 
-    @NotNull(groups = {ChangeStatus.class}, message = "El estado no puede estar vacío")
-    private Boolean status;
-
     public ItemDTO() {}
 
     public ItemDTO(Long id, Long itemTypeId, Long brandId, Long modelId,
                    String serialNumber, String code, Long ownerId,
-                   Long assignedToId, String location, boolean status) {
+                   Long assignedToId, String location) {
         this.id = id;
         this.itemTypeId = itemTypeId;
         this.brandId = brandId;
@@ -54,7 +51,7 @@ public class ItemDTO {
         this.ownerId = ownerId;
         this.assignedToId = assignedToId;
         this.location = location;
-        this.status = status;
+
     }
 
     // GETTERS & SETTERS
@@ -128,14 +125,6 @@ public class ItemDTO {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     // Interfaces para validación

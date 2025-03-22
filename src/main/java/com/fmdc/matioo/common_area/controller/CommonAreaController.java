@@ -22,7 +22,17 @@ public class CommonAreaController {
     public ResponseEntity<Message> getAll() {
         return commonAreaService.findAll();
     }
+    @GetMapping("/active")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Message> getActiveAreas() {
+        return commonAreaService.findActiveAreas();
+    }
 
+    @GetMapping("/inactive")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Message> getInactiveAreas() {
+        return commonAreaService.findInactiveAreas();
+    }
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Message> getById(@PathVariable Long id) {

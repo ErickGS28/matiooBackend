@@ -33,8 +33,6 @@ public class UserDTO {
     @NotNull(groups = {Register.class, Modify.class, ChangeStatus.class}, message = "Role cannot be null.")
     private Role role;
 
-    @NotNull(groups = {Modify.class, ChangeStatus.class}, message = "Status cannot be null.")
-    private Boolean status;
 
     private String recoveryCode;
     private LocalDateTime codeExpiration;
@@ -54,8 +52,6 @@ public class UserDTO {
     public void setLocation(String location) { this.location = location; }
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
-    public Boolean getStatus() { return status; }
-    public void setStatus(Boolean status) { this.status = status; }
     public String getRecoveryCode() { return recoveryCode; }
     public void setRecoveryCode(String recoveryCode) { this.recoveryCode = recoveryCode; }
     public LocalDateTime getCodeExpiration() { return codeExpiration; }
