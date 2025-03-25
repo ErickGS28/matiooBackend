@@ -3,13 +3,21 @@ package com.fmdc.matioo.item_model.controller;
 import com.fmdc.matioo.item_model.model.ItemModelDTO;
 import com.fmdc.matioo.item_model.service.ItemModelService;
 import com.fmdc.matioo.utils.Message;
+import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/item-models")
@@ -87,4 +95,23 @@ public class ItemModelController {
         return itemModelService.createItemModelWithImage(dto, file);
     }
 
+    @GetMapping("/image/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Resource> getImage(@PathVariable Long id) {
+        String imagePath = itemModelService.getImagePathById(id);
+        if (imagePath == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        File imageFile = new File(imagePath);
+        try {
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(imageFile));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG) // Ajusta el tipo de contenido según el tipo de imagen
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + imageFile.getName())
+                    .body(resource);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

@@ -139,12 +139,16 @@ public class ItemService {
                     .orElseThrow(() -> new RuntimeException("Modelo no encontrado"));
             AppUser owner = appUserRepository.findById(dto.getOwnerId())
                     .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+
             AppUser assignedTo = null;
-            if(dto.getAssignedToId() != null) {
+            if (dto.getAssignedToId() != null) {
                 assignedTo = appUserRepository.findById(dto.getAssignedToId())
                         .orElseThrow(() -> new RuntimeException("Usuario asignado no encontrado"));
             }
 
+            /**
+             * Creación del item, ahora incluyendo 'name'.
+             */
             Item item = new Item(
                     itemType,
                     brand,
@@ -154,12 +158,13 @@ public class ItemService {
                     owner,
                     assignedTo,
                     dto.getLocation(),
+                    dto.getName(),   // <-- Asignación del nuevo campo
                     true
             );
-            item.setStatus(true);
-            itemRepository.save(item);
 
+            itemRepository.save(item);
             return new ResponseEntity<>(new Message(item, "El bien se ha creado correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
+
         } catch (DataIntegrityViolationException e) {
             return new ResponseEntity<>(new Message("El número de serie o código ya está en uso", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
@@ -174,15 +179,17 @@ public class ItemService {
         }
         // Verificar si el serialNumber o code ya están en uso
         Item existingItem = optionalItem.get();
-        if (itemRepository.existsBySerialNumber(dto.getSerialNumber()) && !existingItem.getSerialNumber().equals(dto.getSerialNumber())) {
+        if (itemRepository.existsBySerialNumber(dto.getSerialNumber())
+                && !existingItem.getSerialNumber().equals(dto.getSerialNumber())) {
             return new ResponseEntity<>(new Message("El número de serie ya está en uso", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        if (itemRepository.existsByCode(dto.getCode()) && !existingItem.getCode().equals(dto.getCode())) {
+        if (itemRepository.existsByCode(dto.getCode())
+                && !existingItem.getCode().equals(dto.getCode())) {
             return new ResponseEntity<>(new Message("El código ya está en uso", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
         try {
-            // Cargar las entidades completas a partir de los ids del DTO
+            // Cargar las entidades completas
             ItemType itemType = itemTypeRepository.findById(dto.getItemTypeId())
                     .orElseThrow(() -> new RuntimeException("Tipo de bien no encontrado"));
             Brand brand = brandRepository.findById(dto.getBrandId())
@@ -192,7 +199,7 @@ public class ItemService {
             AppUser owner = appUserRepository.findById(dto.getOwnerId())
                     .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
             AppUser assignedTo = null;
-            if(dto.getAssignedToId() != null) {
+            if (dto.getAssignedToId() != null) {
                 assignedTo = appUserRepository.findById(dto.getAssignedToId())
                         .orElseThrow(() -> new RuntimeException("Usuario asignado no encontrado"));
             }
@@ -206,9 +213,11 @@ public class ItemService {
             existingItem.setOwner(owner);
             existingItem.setAssignedTo(assignedTo);
             existingItem.setLocation(dto.getLocation());
-            itemRepository.save(existingItem);
+            existingItem.setName(dto.getName());
 
+            itemRepository.save(existingItem);
             return new ResponseEntity<>(new Message(existingItem, "El bien se ha actualizado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+
         } catch (DataIntegrityViolationException e) {
             return new ResponseEntity<>(new Message("Error de integridad de datos", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }

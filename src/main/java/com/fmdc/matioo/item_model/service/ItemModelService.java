@@ -159,4 +159,14 @@ public class ItemModelService {
         itemModelRepository.save(model);
         return new ResponseEntity<>(new Message(model, "Modelo creado con imagen con éxito.", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
+
+    public String getImagePathById(Long id) {
+        Optional<ItemModel> optionalModel = itemModelRepository.findById(id);
+        if (optionalModel.isPresent()) {
+            return optionalModel.get().getPhoto();
+        }
+        return null;
+    }
+
+
 }

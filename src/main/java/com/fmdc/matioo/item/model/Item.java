@@ -41,15 +41,25 @@ public class Item {
     @Column(name = "location", length = 150)
     private String location;
 
+    /**
+     * Nueva columna name con longitud considerable.
+     * Ajusta el length de la columna según tus necesidades.
+     */
+    @Column(name = "name", length = 255)
+    private String name;
+
     @Column(name = "status", columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean status = true;
 
     public Item() {
     }
 
+    /**
+     * Constructor con todos los campos, incluyendo 'name'.
+     */
     public Item(Long id, ItemType itemType, Brand brand, ItemModel model,
                 String serialNumber, String code, AppUser owner,
-                AppUser assignedTo, String location, boolean status) {
+                AppUser assignedTo, String location, String name, boolean status) {
         this.id = id;
         this.itemType = itemType;
         this.brand = brand;
@@ -59,11 +69,16 @@ public class Item {
         this.owner = owner;
         this.assignedTo = assignedTo;
         this.location = location;
+        this.name = name;
         this.status = status;
     }
+
+    /**
+     * Constructor sin ID (utilizado normalmente para crear).
+     */
     public Item(ItemType itemType, Brand brand, ItemModel model,
                 String serialNumber, String code, AppUser owner,
-                AppUser assignedTo, String location, boolean status) {
+                AppUser assignedTo, String location, String name, boolean status) {
         this.itemType = itemType;
         this.brand = brand;
         this.model = model;
@@ -72,6 +87,7 @@ public class Item {
         this.owner = owner;
         this.assignedTo = assignedTo;
         this.location = location;
+        this.name = name;
         this.status = status;
     }
 
@@ -146,6 +162,14 @@ public class Item {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isStatus() {
