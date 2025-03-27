@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -168,5 +169,76 @@ public class ItemModelService {
         return null;
     }
 
+    @Transactional
+    public ResponseEntity<Message> updateItemModelWithImage(ItemModelDTO dto, MultipartFile file) {
+        if (dto.getId() == null) {
+            return new ResponseEntity<>(new Message(
+                    "El ID del modelo es obligatorio.",
+                    TypesResponse.WARNING
+            ), HttpStatus.BAD_REQUEST);
+        }
+
+        Optional<ItemModel> optionalModel = itemModelRepository.findById(dto.getId());
+        if (optionalModel.isEmpty()) {
+            return new ResponseEntity<>(new Message(
+                    "El modelo no existe.",
+                    TypesResponse.ERROR
+            ), HttpStatus.NOT_FOUND);
+        }
+
+        ItemModel model = optionalModel.get();
+
+        // Validar que el nuevo nombre no se repita (opcional, si lo requieres)
+        if (dto.getName() != null && !dto.getName().equals(model.getName())) {
+            if (itemModelRepository.existsByNameAndIdNot(dto.getName(), dto.getId())) {
+                return new ResponseEntity<>(new Message(
+                        "El nombre del modelo ya existe.",
+                        TypesResponse.WARNING
+                ), HttpStatus.BAD_REQUEST);
+            }
+            model.setName(dto.getName());
+        }
+
+        // Actualizamos la imagen solo si se manda un MultipartFile no vacío
+        if (file != null && !file.isEmpty()) {
+            try {
+                // Opcional: borrar la imagen anterior del disco, si quieres mantener limpio el folder
+                if (model.getPhoto() != null) {
+                    File oldFile = new File(System.getProperty("user.dir") + "/" + model.getPhoto());
+                    if (oldFile.exists()) {
+                        oldFile.delete();
+                    }
+                }
+
+                // Guardar nueva imagen
+                String uploadDir = System.getProperty("user.dir") + "/uploads/images";
+                Path uploadPath = Paths.get(uploadDir);
+
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+
+                String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+                Path filePath = uploadPath.resolve(fileName);
+                file.transferTo(filePath.toFile());
+
+                model.setPhoto("uploads/images/" + fileName);
+
+            } catch (IOException e) {
+                return new ResponseEntity<>(new Message(
+                        "Error al subir la imagen: " + e.getMessage(),
+                        TypesResponse.ERROR
+                ), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        // Guardar cambios
+        itemModelRepository.save(model);
+
+        return new ResponseEntity<>(
+                new Message(model, "Modelo actualizado con éxito (incluyendo imagen).", TypesResponse.SUCCESS),
+                HttpStatus.OK
+        );
+    }
 
 }

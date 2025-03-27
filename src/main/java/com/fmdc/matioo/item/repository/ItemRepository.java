@@ -49,6 +49,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     Optional<Item> findByLocation(String location);
 
     List<Item> findByStatus(boolean status);
- 
-    
+
+    List<Item> findByAssignedToIsNull();
 }

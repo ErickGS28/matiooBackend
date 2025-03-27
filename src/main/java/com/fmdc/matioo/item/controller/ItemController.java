@@ -179,4 +179,14 @@ public class ItemController {
         // Lógica: validar que el bien exista y actualizar el campo assignedTo a null.
         return itemService.unassignItem(id);
     }
+
+
+        // Buscar items que no tengan asignado a nadie
+        @PreAuthorize("hasAnyAuthority('ADMIN','INTERN')")
+        @GetMapping("/unassigned")
+        public ResponseEntity<Message> getUnassignedItems() {
+            return itemService.getUnassignedItems();
+        }
+
+
 }

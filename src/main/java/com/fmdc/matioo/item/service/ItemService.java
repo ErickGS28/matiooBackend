@@ -286,4 +286,15 @@ public class ItemService {
 
         return new ResponseEntity<>(new Message(item, "El bien ha sido desasignado correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
     }
+
+        // Buscar items que no tengan asignado a nadie
+        @Transactional(readOnly = true)
+        public ResponseEntity<Message> getUnassignedItems() {
+            List<Item> unassignedItems = itemRepository.findByAssignedToIsNull();
+            if (unassignedItems.isEmpty()) {
+                return new ResponseEntity<>(new Message("No hay bienes sin asignar.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(new Message(unassignedItems, "Bienes sin asignar obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
+        }
+
 }

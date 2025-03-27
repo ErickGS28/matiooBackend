@@ -114,4 +114,12 @@ public class ItemModelController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    @PutMapping(value = "/update-with-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Message> updateModelWithImage(
+            @RequestPart("dto") @Validated(ItemModelDTO.Update.class) ItemModelDTO dto,
+            @RequestPart("image") MultipartFile file) {
+        return itemModelService.updateItemModelWithImage(dto, file);
+    }
+
 }
