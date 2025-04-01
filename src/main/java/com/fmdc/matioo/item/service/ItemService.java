@@ -137,8 +137,13 @@ public class ItemService {
                     .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
             ItemModel model = itemModelRepository.findById(dto.getModelId())
                     .orElseThrow(() -> new RuntimeException("Modelo no encontrado"));
-            AppUser owner = appUserRepository.findById(dto.getOwnerId())
-                    .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+
+            // Se valida si el dueño viene nulo
+            AppUser owner = null;
+            if (dto.getOwnerId() != null) {
+                owner = appUserRepository.findById(dto.getOwnerId())
+                        .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+            }
 
             AppUser assignedTo = null;
             if (dto.getAssignedToId() != null) {
@@ -170,6 +175,7 @@ public class ItemService {
         }
     }
 
+
     // UPDATE ITEM
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<Message> updateItem(ItemDTO dto) {
@@ -196,8 +202,15 @@ public class ItemService {
                     .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
             ItemModel model = itemModelRepository.findById(dto.getModelId())
                     .orElseThrow(() -> new RuntimeException("Modelo no encontrado"));
-            AppUser owner = appUserRepository.findById(dto.getOwnerId())
-                    .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+
+            // Si el owner viene nulo, se asigna null; de lo contrario se busca la entidad
+            AppUser owner = null;
+            if (dto.getOwnerId() != null) {
+                owner = appUserRepository.findById(dto.getOwnerId())
+                        .orElseThrow(() -> new RuntimeException("Dueño no encontrado"));
+            }
+
+            // Mismo manejo para assignedTo
             AppUser assignedTo = null;
             if (dto.getAssignedToId() != null) {
                 assignedTo = appUserRepository.findById(dto.getAssignedToId())
@@ -222,6 +235,7 @@ public class ItemService {
             return new ResponseEntity<>(new Message("Error de integridad de datos", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @Transactional(readOnly = true)
     public ResponseEntity<Message> getActiveItems() {
