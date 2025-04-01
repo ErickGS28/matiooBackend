@@ -33,22 +33,28 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable) // Deshabilitar CSRF
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Configurar CORS
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/users/save").permitAll()
-                        // Rutas restringidas según rol:
-                        // Solo usuarios con rol ADMIN podrán acceder a /brands/all
-                        
-                        // Cualquier otra ruta requiere autenticación
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Agregar filtro JWT
-        return http.build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(AbstractHttpConfigurer::disable) // Deshabilitar CSRF
+        .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Configurar CORS
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/auth/login").permitAll()
+            .requestMatchers("/users/save").permitAll()
+
+            // Añadir rutas públicas para recuperación de contraseña
+            .requestMatchers("/users/send-recovery-code/**").permitAll()
+            .requestMatchers("/users/verify-recovery-code").permitAll()
+            .requestMatchers("/users/reset-password").permitAll()
+
+            // Cualquier otra ruta requiere autenticación
+            .anyRequest().authenticated()
+        )
+        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Agregar filtro JWT
+
+    return http.build();
+}
+
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

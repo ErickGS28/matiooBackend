@@ -63,20 +63,17 @@ public class UserController {
         return userService.changePassword(dto);
     }
 
-    @PostMapping("/send-recovery-code/{email}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
+    @PostMapping("/send-recovery-code/{email}") 
         public ResponseEntity<Message> sendRecoveryCode(@PathVariable String email) {
         return userService.sendRecoveryCode(email);
     }
 
     @PostMapping("/verify-recovery-code")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
     public ResponseEntity<Message> verifyRecoveryCode(@Validated @RequestBody RecoveryDTO dto) {
         return userService.verifyRecoveryCode(dto);
     }
 
     @PutMapping("/reset-password")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'INTERN', 'RESPONSIBLE')")
     public ResponseEntity<Message> resetPassword(@RequestBody Map<String, String> payload) {
         String email = payload.get("email");
         String newPassword = payload.get("newPassword");
