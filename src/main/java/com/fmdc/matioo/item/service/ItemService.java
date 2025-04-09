@@ -310,5 +310,17 @@ public class ItemService {
             }
             return new ResponseEntity<>(new Message(unassignedItems, "Bienes sin asignar obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
         }
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> getItemsByOwner(Long ownerId) {
+        // Creamos un objeto AppUser solo con el ID para usarlo en la consulta.
+        AppUser owner = new AppUser();
+        owner.setId(ownerId);
+
+        List<Item> items = itemRepository.findByOwner(owner);
+        if (items == null || items.isEmpty()) {
+            return new ResponseEntity<>(new Message("No hay bienes asociados a ese dueño.", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new Message(items, "Bienes asociados al dueño obtenidos con éxito.", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
 
 }

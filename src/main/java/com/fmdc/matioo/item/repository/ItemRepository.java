@@ -51,4 +51,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByStatus(boolean status);
 
     List<Item> findByAssignedToIsNull();
+
+    List<Item> findByOwner(AppUser owner);
+
 }

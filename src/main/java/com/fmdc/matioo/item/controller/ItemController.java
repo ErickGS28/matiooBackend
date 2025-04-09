@@ -189,4 +189,11 @@ public class ItemController {
         }
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/byOwnerId/{ownerId}")
+    public ResponseEntity<Message> getItemsByOwner(@PathVariable Long ownerId) {
+        return itemService.getItemsByOwner(ownerId);
+    }
+
+
 }
